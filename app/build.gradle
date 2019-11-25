@@ -6,6 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.mbellis.DragNDrop"
+        minSdkVersion 14
+        targetSdkVersion 17
     }
 
     buildTypes {

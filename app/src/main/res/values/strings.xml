@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, RobotArena!</string>
+    <string name="app_name">RobotArena</string>
+    <string name="about_name">About This App</string>
+    <string name="add_name">Add a Node</string>
+    <string name="add_text">Add</string>
+    <string name="remove_text">Remove last</string>
+    <string name="choose_scripts_text">Choose Scripts to Use</string>
+    <string name="player_script_text">Choose Player Script and Robot</string>
+    <string name="enemy_script_text">Choose Enemy Scripts and Robot</string>
+    <string name="help_name">Help Screen</string>
+    <string name="delete_text">Delete Current Script</string>
+    <string name="delete_all_text">Delete All Scripts</string>
+    <string name="delete_robot_text">Delete Current Robot</string>
+    <string name="delete_all_robots_text">Delete All Robots</string>
+    <string name="start_text">Start Game!</string>
+    <string name="message_text">Message</string>
+    <string name="reset_text">Reset Points</string>
+    <string name="plus_text">+1</string>
+    <string name="minus_text">-1</string>
+    <string name="zero_text">0</string>
+    <string name="health_text">Health</string>
+    <string name="shield_text">Shields</string>
+    <string name="damage_text">Damage</string>
+    <string name="missiles_text">Missiles</string>
+    <string name="enemy1_text">Enemy 1</string>
+    <string name="enemy2_text">Enemy 2</string>
+    <string name="enemy3_text">Enemy 3</string>
+    <string name="robot_cust_text">Customize Robot</string>
+    <string name="game_over_text">Game Over!</string>
+    <string name="edit_script_text">Edit Current Script</string>
+    <string name="edit_scripts_text">Edit Scripts</string>
+    <string name="edit_robot_text">Edit Current Robot</string>
+    <string name="script_name_text">Current Script Name</string>
+    <string name="robot_name_text">Current Robot Name</string>
+    <string name="robot_load_screen">Edit Robot</string>
+    <string name="home_screen_text">Home</string>
+    <string name="quit_text">Quit</string>
+    <string name="home_alt_text">Home Screen</string>
+    <string name="add_view_text">Pick the type of Node to add</string>
+    <string name="add_button_text">Add Node</string>
+    <string name="add_function_text">FUNCTION\nChoose field to use!</string>
+    <string name="text_box_text">Text Box</string>
+    <string name="variable_chooser_text">Variable Chooser</string>
+    <string name="direction_chooser_text">Direction Chooser</string>
+    <string name="direction_text">Direction</string>
+    <string name="variable_text">Variable</string>
+    <string name="text_text">Text</string>
+    <string name="null_text">NOTHING</string>
+    <string name="done_text">Done</string>
+    <string name="create_script_text">Create Script</string>
+    <string name="load_script_text">Load Script</string>
+    <string name="save_script_text">Save Current Script</string>
+    <string name="save_robot_text">Save Current Robot</string>
+    <string name="robot_load_text">Edit Robot</string>
+    <string name="robot_new_text">Create Robot</string>
+    <string name="save_text">Save</string>
+    <string name="ok_text">OK</string>
+    <string name="syntax_text">Syntax Error</string>
+    <string name="add_function">FUNCTION</string>
+    <string name="add_if">IF_THEN_ELSE</string>
+    <string name="add_while">WHILE</string>
+    <string name="add_statement">BOOLEAN_STATEMENT</string>
+    <string name="value_text">VALUE</string>
+    <string name="operator_text">OPERATOR</string>
+    <string name="number_text">NUMBER</string>
+    <string name="enter_number_text">Enter a number:</string>
+    <string name="addfunction_name">Add Function</string>
+    <string name="addboolean_name">Add Boolean Statement</string>
+    <string name="animatedview_name">Game Screen</string>
+    <string name="usenumber_text">Use Number?</string>
+    <string name="health_bar_text">Health Bar Text</string>
+    <string name="help_view_text">Create a script by adding lines. You can add
+        a FUNCTION, which is an action consisting of: shielding, shooting, moving, dececting and reloading
+        an IF_THEN_ELSE, which checks to see if a condition is true, if so continues, otherwise goes to else
+        which can contain more lines. ()You can nest IF_THEN_ELSE statements
+        but be careful to make the END_IF and END_ELSE line up properly!)
+        a WHILE, which performs code until the conditon is no longer met and cannot be nested
+        or NOTHING which does nothing. A good use of this is in the ELSE part of
+        and IF_THEN_ELSE if you don\'nt need to do anything else
+        You can remove a line if you do not like it, and press
+        the back button to undo a delete</string>
+    <string name="about_description">Created by: Matt Bellis for Independent Study Fall 2012</string>
+</resources>

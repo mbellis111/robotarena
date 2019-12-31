@@ -41,21 +41,22 @@ public class GameOver extends Activity {
         }
         if (winner != null) {
             if (winner.equals("1")) {
-                winnerText.setText("You win!");
+                winnerText.setText(R.string.win_text);
             } else if (winner.equals("5")) {
-                winnerText.setText("Draw!");
+                winnerText.setText(R.string.draw_text);
             } else {
-                winnerText.setText("Robot " + winner + " wins!");
+                winnerText.setText(String.format(getResources().getString(R.string.enemy_win), winner));
             }
         }
 
         // set up stat tracking
         stats = Arena.getStats();
-        String txt = "";
+        StringBuilder txt = new StringBuilder();
         for (StatTracker st : stats) {
-            txt += st.toString() + "\n\n";
+            txt.append(st.toString());
+            txt.append("\n\n");
         }
-        statText.setText(txt);
+        statText.setText(txt.toString());
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -50,11 +50,11 @@ public class RobotEditor extends Activity {
         pointsText = (TextView) findViewById(R.id.cust_points_val);
 
         // initiate text fields to default
-        hpText.setText(Constants.ROBOT_START_HP + "");
-        shieldText.setText(Constants.ROBOT_START_SHIELDS + "");
-        damageText.setText(Constants.ROBOT_START_DAMAGE + "");
-        mineText.setText(Constants.ROBOT_START_MISSILES + "");
-        pointsText.setText(Constants.ROBOT_BUILD_POINTS + "");
+        hpText.setText(String.valueOf(Constants.ROBOT_START_HP));
+        shieldText.setText(String.valueOf(Constants.ROBOT_START_SHIELDS));
+        damageText.setText(String.valueOf(Constants.ROBOT_START_DAMAGE));
+        mineText.setText(String.valueOf(Constants.ROBOT_START_MISSILES));
+        pointsText.setText(String.valueOf(Constants.ROBOT_BUILD_POINTS));
 
         // figure out which screen came from
         Bundle extras = getIntent().getExtras();
@@ -190,11 +190,11 @@ public class RobotEditor extends Activity {
     }
 
     private void updateFields() {
-        hpText.setText(currRobot.getHealth() + "");
-        shieldText.setText(currRobot.getShield() + "");
-        damageText.setText(currRobot.getDamage() + "");
-        mineText.setText(currRobot.getMissiles() + "");
-        pointsText.setText(currRobot.getBuildPoints() + "");
+        hpText.setText(String.valueOf(currRobot.getHealth()));
+        shieldText.setText(String.valueOf(currRobot.getShield()));
+        damageText.setText(String.valueOf(currRobot.getDamage()));
+        mineText.setText(String.valueOf(currRobot.getMissiles()));
+        pointsText.setText(String.valueOf(currRobot.getBuildPoints()));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

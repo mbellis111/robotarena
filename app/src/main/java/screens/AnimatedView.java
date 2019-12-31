@@ -122,7 +122,6 @@ public class AnimatedView extends ImageView {
                     c.rotate((float) b.getDirection(), (float) b.getX(), (float) b.getY());
                     b.draw(c);
                     c.restore();
-                    ;
                 } else if (b instanceof Bullet) {
                     if (b.getPicture() == null) {
                         switch (b.getShotFrom().getId()) {

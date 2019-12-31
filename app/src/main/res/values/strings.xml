@@ -72,7 +72,7 @@
     <string name="usenumber_text">Use Number?</string>
     <string name="health_bar_text">Health Bar Text</string>
     <string name="help_view_text">Create a script by adding lines. You can add
-        a FUNCTION, which is an action consisting of: shielding, shooting, moving, dececting and reloading
+        a FUNCTION, which is an action consisting of: shielding, shooting, moving, detecting and reloading
         an IF_THEN_ELSE, which checks to see if a condition is true, if so continues, otherwise goes to else
         which can contain more lines. ()You can nest IF_THEN_ELSE statements
         but be careful to make the END_IF and END_ELSE line up properly!)
@@ -82,4 +82,7 @@
         You can remove a line if you do not like it, and press
         the back button to undo a delete</string>
     <string name="about_description">Created by: Matt Bellis for Independent Study Fall 2012</string>
+    <string name="win_text">You Win!</string>
+    <string name="draw_text">Draw!</string>
+    <string name="enemy_win">Robot %1$s Wins!</string>
 </resources>

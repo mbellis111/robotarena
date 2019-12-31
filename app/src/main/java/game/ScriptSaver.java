@@ -32,7 +32,7 @@ public class ScriptSaver {
             // if successful, append this to list of saved scripts
             // and if the file name is just being updated
             // UPDATE to save alphabetically?
-            if (checkFileAlreadySaved(c, fileName) == false) {
+            if (!checkFileAlreadySaved(c, fileName)) {
                 fOut = c.openFileOutput(Constants.SAVEDSCRIPTS + ".txt", Context.MODE_APPEND);
                 osw = new OutputStreamWriter(fOut);
                 osw.write(fileName + "\n");
@@ -108,11 +108,11 @@ public class ScriptSaver {
             return false;
         }
         for (String s : fileNames) {
-            if (c.deleteFile(s + ".txt") == false) {
+            if (!c.deleteFile(s + ".txt")) {
                 passed = false;
             }
         }
-        if (deleteFile(c, Constants.SAVEDSCRIPTS) == false) {
+        if (!deleteFile(c, Constants.SAVEDSCRIPTS)) {
             return false;
         }
         return passed;

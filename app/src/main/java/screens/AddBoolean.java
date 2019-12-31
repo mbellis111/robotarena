@@ -89,8 +89,8 @@ public class AddBoolean extends Activity {
         // done button
         done_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String number = number_text.getText().toString();
-                if (number == null || number.equals("")) {
+                String number = number_text.getText().toString().trim();
+                if (number.equals("")) {
                     number = "0";
                 }
                 String function;

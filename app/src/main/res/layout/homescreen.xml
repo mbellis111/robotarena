@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/steel_background_2_small" >
+    android:background="@drawable/steel_background_2_small">
 
     <Button
         android:id="@+id/home_quit_button"
@@ -43,12 +43,13 @@
         android:id="@+id/home_load_button"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:layout_marginTop="56dp"
-        android:textAlignment="center"
+        android:layout_marginTop="8dp"
         android:text="@string/edit_scripts_text"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_create_button" />
+        app:layout_constraintTop_toBottomOf="@+id/home_rload_button" />
 
     <Button
         android:id="@+id/home_create_button"
@@ -57,21 +58,22 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/create_script_text"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/home_rnew_button" />
 
     <Button
         android:id="@+id/home_rload_button"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
+        android:layout_marginTop="56dp"
         android:text="@string/robot_load_text"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_load_button" />
+        app:layout_constraintTop_toBottomOf="@+id/home_create_button" />
 
     <TextView
         android:id="@+id/title_text"

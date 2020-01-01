@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import com.mbellis.DragNDrop.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import game.Constants;
 import game.Robot;
@@ -31,11 +32,13 @@ public class RobotLoader extends Activity {
     private EditText fileName;
     private Button editButton, homeButton, saveButton, deleteButton, deleteAllButton;
 
+    private static final String DEFAULT_SELECT_TEXT = "-New Robot-";
+
     private class StringListener implements OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             String chosen = parent.getItemAtPosition(pos).toString();
-            if (chosen.equals("-Select Robot-")) {
+            if (chosen.equals(DEFAULT_SELECT_TEXT)) {
                 fileName.setText("");
             } else {
                 fileName.setText(chosen);
@@ -45,7 +48,6 @@ public class RobotLoader extends Activity {
         public void onNothingSelected(AdapterView<?> arg0) {
             // nothing to do here
         }
-
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -69,15 +71,11 @@ public class RobotLoader extends Activity {
         }
 
         ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
-        // make save spinner blank if coming from edit script screen
-        save_adapter.add("-Select Robot-");
-        for (String s : robots) {
-            save_adapter.add(s);
-        }
         save_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         saveSpinner.setAdapter(save_adapter);
         saveSpinner.setOnItemSelectedListener(new StringListener());
-        fileName.setText("");
+
+        resetSpinnerAdapter(robots);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -104,26 +102,18 @@ public class RobotLoader extends Activity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String fn = fileName.getText().toString();
-
                 if (RobotSaver.deleteFile(RobotLoader.this, fn)) {
-
                     ArrayList<String> robots = ScriptSaver.readFromFile(RobotLoader.this, Constants.SAVEDROBOTS);
-                    RobotSaver.removeOneLine(RobotLoader.this, robots, fn);
-                    @SuppressWarnings("unchecked")
-                    ArrayAdapter<String> adapter = (ArrayAdapter<String>) saveSpinner.getAdapter();
-                    adapter.clear();
-                    // make save spinner blank if coming from edit script screen
-                    robots = ScriptSaver.readFromFile(RobotLoader.this, Constants.SAVEDROBOTS);
-                    adapter.add("-Select Robot-");
-                    fileName.setText("");
-                    for (String s : robots) {
-                        adapter.add(s);
+                    if (robots != null) {
+                        RobotSaver.removeOneLine(RobotLoader.this, robots, fn);
+                        // make save spinner blank if coming from edit script screen
+                        robots = ScriptSaver.readFromFile(RobotLoader.this, Constants.SAVEDROBOTS);
                     }
-                    adapter.notifyDataSetChanged();
+                    resetSpinnerAdapter(robots);
                     PopUp.makeToast(RobotLoader.this, "Robot deleted");
-                    return;
+                } else {
+                    PopUp.makeToast(RobotLoader.this, "Error deleting file!");
                 }
-                PopUp.makeToast(RobotLoader.this, "Error deleting file!");
             }
         });
 
@@ -162,16 +152,7 @@ public class RobotLoader extends Activity {
                         RobotSaver.writeToFile(RobotLoader.this, RobotEditor.getCustomRobot(), fileName.getText() + "")) {
                     // update spinner
                     ArrayList<String> robots = ScriptSaver.readFromFile(RobotLoader.this, Constants.SAVEDROBOTS);
-                    @SuppressWarnings("unchecked")
-                    ArrayAdapter<String> adapter = (ArrayAdapter<String>) saveSpinner.getAdapter();
-                    adapter.clear();
-                    // make save spinner blank if coming from edit script screen
-                    fileName.setText("");
-                    adapter.add("-Select Robot-");
-                    for (String s : robots) {
-                        adapter.add(s);
-                    }
-                    adapter.notifyDataSetChanged();
+                    resetSpinnerAdapter(robots);
                     PopUp.makeToast(RobotLoader.this, "Robot saved");
                     return;
                 }
@@ -180,14 +161,21 @@ public class RobotLoader extends Activity {
         });
     }
 
+    private void resetSpinnerAdapter(List<String> robots) {
+        @SuppressWarnings("unchecked")
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>) saveSpinner.getAdapter();
+        adapter.clear();
+        adapter.add(DEFAULT_SELECT_TEXT);
+        fileName.setText("");
+        if (robots != null && !robots.isEmpty()) {
+            adapter.addAll(robots);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
     public void deleteAllRobots() {
         if (RobotSaver.deleteAllFiles(RobotLoader.this)) {
-            @SuppressWarnings("unchecked")
-            ArrayAdapter<String> adapter = (ArrayAdapter<String>) saveSpinner.getAdapter();
-            adapter.clear();
-            adapter.add("-Select Robot-");
-            adapter.notifyDataSetChanged();
-            fileName.setText("");
+            resetSpinnerAdapter(null);
             PopUp.makeToast(RobotLoader.this, "All files deleted!");
             return;
         }

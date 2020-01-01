@@ -45,6 +45,9 @@ public class RobotSaver {
         ObjectOutputStream oOut;
         OutputStreamWriter osw;
 
+        // set the robots name
+        r.setRobotName(fileName);
+
         try {
             fOut = c.openFileOutput(fileName + "R.txt", Context.MODE_PRIVATE);
             oOut = new ObjectOutputStream(fOut);
@@ -54,7 +57,7 @@ public class RobotSaver {
             oOut.close();
 
             // now write to list of saved robots
-            if (checkFileAlreadySaved(c, fileName) == false) {
+            if (!checkFileAlreadySaved(c, fileName)) {
                 fOut = c.openFileOutput(Constants.SAVEDROBOTS + ".txt", Context.MODE_APPEND);
                 osw = new OutputStreamWriter(fOut);
                 osw.write(fileName + "\n");
@@ -85,7 +88,7 @@ public class RobotSaver {
             isr = new InputStreamReader(fIn);
             br = new BufferedReader(isr);
 
-            String s = "";
+            String s;
             while ((s = br.readLine()) != null) {
                 if (s.equals(fileName)) {
                     saved = true;
@@ -109,11 +112,11 @@ public class RobotSaver {
             return false;
         }
         for (String s : fileNames) {
-            if (c.deleteFile(s + "R.txt") == false) {
+            if (!c.deleteFile(s + "R.txt")) {
                 passed = false;
             }
         }
-        if (ScriptSaver.deleteFile(c, Constants.SAVEDROBOTS) == false) {
+        if (!ScriptSaver.deleteFile(c, Constants.SAVEDROBOTS)) {
             return false;
         }
         return passed;

@@ -52,13 +52,13 @@ public class RobotLoader extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loadrobotlayout);
 
-        saveSpinner = (Spinner) findViewById(R.id.r_save_spinner);
-        fileName = (EditText) findViewById(R.id.r_save_name);
-        editButton = (Button) findViewById(R.id.r_save_edit_button);
-        homeButton = (Button) findViewById(R.id.r_save_home_button);
-        saveButton = (Button) findViewById(R.id.r_save_save_button);
-        deleteButton = (Button) findViewById(R.id.r_save_delete_button);
-        deleteAllButton = (Button) findViewById(R.id.r_save_deleteall_button);
+        saveSpinner = findViewById(R.id.r_save_spinner);
+        fileName = findViewById(R.id.r_save_name);
+        editButton = findViewById(R.id.r_save_edit_button);
+        homeButton = findViewById(R.id.r_save_home_button);
+        saveButton = findViewById(R.id.r_save_save_button);
+        deleteButton = findViewById(R.id.r_save_delete_button);
+        deleteAllButton = findViewById(R.id.r_save_deleteall_button);
 
         ArrayList<String> robots = ScriptSaver.readFromFile(this, Constants.SAVEDROBOTS);
         if (robots == null) {
@@ -157,6 +157,7 @@ public class RobotLoader extends Activity {
                     PopUp.makeToast(RobotLoader.this, "Robot needs a name!");
                     return;
                 }
+
                 if (RobotEditor.getCustomRobot() != null &&
                         RobotSaver.writeToFile(RobotLoader.this, RobotEditor.getCustomRobot(), fileName.getText() + "")) {
                     // update spinner

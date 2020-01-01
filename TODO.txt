@@ -1,6 +1,10 @@
 
 THINGS TO DO OR FIX
 
+[]  Redo all screens as constraint layouts, fix scaling to fit any phone
+
+[]  Add robot and script names, add clarity to editing / loading screens to display current robot / script
+
 X	Fix crash when no values enabled in start screen, or value missing
 
 X	Rework script creation screen to not need reloading

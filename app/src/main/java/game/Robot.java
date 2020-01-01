@@ -8,9 +8,7 @@ import java.io.Serializable;
 import nodes.Script;
 
 public class Robot implements Serializable {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     private double x, y, ammo, health, shield, speed, damage, robotsDetected, missiles;
     private int robot_id, buildPoints;
@@ -19,6 +17,7 @@ public class Robot implements Serializable {
     private BitmapDrawable picture = null;
     private Script script;
     private static int id = 0;
+    private String robotName;
 
     public Robot() {
         this(100, 100);
@@ -35,8 +34,9 @@ public class Robot implements Serializable {
         isDetecting = false;
         damage = Constants.ROBOT_START_DAMAGE;
         missiles = Constants.ROBOT_START_MISSILES;
-        setBuildPoints(Constants.ROBOT_BUILD_POINTS);
+        buildPoints = Constants.ROBOT_BUILD_POINTS;
         robot_id = ++id;
+        robotName = "Unnamed " + robot_id;
     }
 
     public Robot(double x, double y, Script script) {
@@ -54,6 +54,23 @@ public class Robot implements Serializable {
     }
 
     // getters and setters
+
+    public String getFullDisplayName() {
+        String fullName = getRobotName();
+        if (script != null) {
+            fullName += " (" + script.getScriptName() + ")";
+        }
+        return fullName;
+    }
+
+    public String getRobotName() {
+        return robotName;
+    }
+
+    public void setRobotName(String robotName) {
+        this.robotName = robotName;
+    }
+
     public double getX() {
         return x;
     }

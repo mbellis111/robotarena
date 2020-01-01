@@ -16,7 +16,7 @@
     <string name="delete_all_robots_text">Delete All Robots</string>
     <string name="start_text">Start Game!</string>
     <string name="message_text">Message</string>
-    <string name="reset_text">Reset Points</string>
+    <string name="reset_text">Reset</string>
     <string name="plus_text">+1</string>
     <string name="minus_text">-1</string>
     <string name="zero_text">0</string>
@@ -85,4 +85,6 @@
     <string name="win_text">You Win!</string>
     <string name="draw_text">Draw!</string>
     <string name="enemy_win">Robot %1$s Wins!</string>
+    <string name="points_left">Points Left: %1$d</string>
+    <string name="robot_name">Robot: %1$s</string>
 </resources>

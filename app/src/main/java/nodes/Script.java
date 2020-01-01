@@ -9,6 +9,7 @@ public class Script {
     private int tokenLength;
     private boolean functionCalled;
     private int loopedNoCall;
+    private String scriptName;
 
     public Script(Node headNode, Robot owner) {
         this.headNode = headNode;
@@ -17,6 +18,15 @@ public class Script {
         tokenLength = -1;
         functionCalled = false;
         loopedNoCall = 0;
+        scriptName = "Unnamed";
+    }
+
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
     }
 
     public Node getHeadNode() {

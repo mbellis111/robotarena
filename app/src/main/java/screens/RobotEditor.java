@@ -20,7 +20,7 @@ public class RobotEditor extends Activity {
 
     private Button addHp, minHp, addShields, minShields, addDamage, minDamage,
             addMines, minMines, done, resetPoints;
-    private TextView hpText, shieldText, damageText, mineText, pointsText;
+    private TextView hpText, shieldText, damageText, mineText, pointsText, nameText;
     private static Robot currRobot;
     private final int HPCHANGE = 5, HPCOST = 1, SHIELDCOST = 1, SHIELDCHANGE = 7,
             DAMCOST = 3, DAMCHANGE = 1, MISSILECOST = 2, MISSILECHANGE = 1;
@@ -31,23 +31,24 @@ public class RobotEditor extends Activity {
         setContentView(R.layout.customizerobot);
 
         // buttons
-        addHp = (Button) findViewById(R.id.cust_p_hp);
-        addShields = (Button) findViewById(R.id.cust_p_shield);
-        addDamage = (Button) findViewById(R.id.cust_p_damage);
-        addMines = (Button) findViewById(R.id.cust_p_mines);
-        minHp = (Button) findViewById(R.id.cust_m_hp);
-        minShields = (Button) findViewById(R.id.cust_m_shield);
-        minDamage = (Button) findViewById(R.id.cust_m_damage);
-        minMines = (Button) findViewById(R.id.cust_m_mines);
-        done = (Button) findViewById(R.id.cust_done);
-        resetPoints = (Button) findViewById(R.id.cust_reset);
+        addHp = findViewById(R.id.cust_p_hp);
+        addShields = findViewById(R.id.cust_p_shield);
+        addDamage = findViewById(R.id.cust_p_damage);
+        addMines = findViewById(R.id.cust_p_mines);
+        minHp = findViewById(R.id.cust_m_hp);
+        minShields = findViewById(R.id.cust_m_shield);
+        minDamage = findViewById(R.id.cust_m_damage);
+        minMines = findViewById(R.id.cust_m_mines);
+        done = findViewById(R.id.cust_done);
+        resetPoints = findViewById(R.id.cust_reset);
 
         //text
-        hpText = (TextView) findViewById(R.id.cust_hp_val);
-        shieldText = (TextView) findViewById(R.id.cust_shield_val);
-        damageText = (TextView) findViewById(R.id.cust_damage_val);
-        mineText = (TextView) findViewById(R.id.cust_mine_val);
-        pointsText = (TextView) findViewById(R.id.cust_points_val);
+        hpText = findViewById(R.id.cust_hp_val);
+        shieldText = findViewById(R.id.cust_shield_val);
+        damageText = findViewById(R.id.cust_damage_val);
+        mineText = findViewById(R.id.cust_mine_val);
+        pointsText = findViewById(R.id.cust_points_val);
+        nameText = findViewById(R.id.editing_robot_name);
 
         // initiate text fields to default
         hpText.setText(String.valueOf(Constants.ROBOT_START_HP));
@@ -55,6 +56,7 @@ public class RobotEditor extends Activity {
         damageText.setText(String.valueOf(Constants.ROBOT_START_DAMAGE));
         mineText.setText(String.valueOf(Constants.ROBOT_START_MISSILES));
         pointsText.setText(String.valueOf(Constants.ROBOT_BUILD_POINTS));
+        nameText.setText("");
 
         // figure out which screen came from
         Bundle extras = getIntent().getExtras();
@@ -75,7 +77,6 @@ public class RobotEditor extends Activity {
 
         // upload fields with robot stats
         updateFields();
-
 
         //init listeners for buttons
         addHp.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +195,8 @@ public class RobotEditor extends Activity {
         shieldText.setText(String.valueOf(currRobot.getShield()));
         damageText.setText(String.valueOf(currRobot.getDamage()));
         mineText.setText(String.valueOf(currRobot.getMissiles()));
-        pointsText.setText(String.valueOf(currRobot.getBuildPoints()));
+        pointsText.setText(String.format(getResources().getString(R.string.points_left), currRobot.getBuildPoints()));
+        nameText.setText(String.format(getResources().getString(R.string.robot_name), currRobot.getRobotName()));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

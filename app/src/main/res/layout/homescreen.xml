@@ -1,78 +1,95 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:columnCount="4"
-    android:background="@drawable/steel_background_2_small"
-    android:rowCount="2" >
+    android:background="@drawable/steel_background_2_small" >
 
     <Button
         android:id="@+id/home_quit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/quit_text" />
-
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/home_start_button"
-        android:layout_marginTop="67dp"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40sp" />
+        android:layout_width="96dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/quit_text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/home_start_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/home_quit_button"
-        android:layout_alignLeft="@+id/home_rnew_button"
-        android:layout_marginBottom="75dp"
-        android:layout_marginLeft="30dp"
-        android:text="@string/start_text" />
+        android:layout_width="386dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/start_text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_text" />
 
     <Button
         android:id="@+id/home_rnew_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/home_rload_button"
-        android:layout_alignBottom="@+id/home_rload_button"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="43dp"
-        android:text="@string/robot_new_text" />
+        android:layout_width="187dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/robot_new_text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_start_button" />
 
     <Button
         android:id="@+id/home_load_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/home_rnew_button"
-        android:layout_marginBottom="45dp"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/home_rnew_button"
-        android:text="@string/edit_scripts_text" />
+        android:layout_width="187dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="56dp"
+        android:textAlignment="center"
+        android:text="@string/edit_scripts_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_create_button" />
 
     <Button
         android:id="@+id/home_create_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/home_load_button"
-        android:layout_alignBottom="@+id/home_load_button"
-        android:layout_alignLeft="@+id/home_rnew_button"
+        android:layout_width="187dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/create_script_text" />
+        android:text="@string/create_script_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/home_rnew_button" />
 
     <Button
         android:id="@+id/home_rload_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/home_start_button"
-        android:layout_alignRight="@+id/home_load_button"
-        android:layout_marginBottom="40dp"
-        android:text="@string/robot_load_text" />
+        android:layout_width="187dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:text="@string/robot_load_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_load_button" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="395dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -30,8 +30,6 @@ public class SetUp {
         double leftX = Constants.OFFSETX, rightX = Constants.WIDTH - Constants.OFFSETX - Constants.ROBOT_SIZE;
         double topY = Constants.OFFSETY, botY = Constants.HEIGHT - Constants.OFFSETY - Constants.ROBOT_SIZE;
 
-        Robot.resetIds();
-
         // player
         ArrayList<String> list;
         list = ChooseScript.playerScript;

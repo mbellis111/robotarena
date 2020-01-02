@@ -18,7 +18,7 @@ import game.Constants;
 
 
 public class Home extends Activity {
-    private Button createButton, loadButton, startButton, quitButton, rNewButton, rLoadButton;
+    private Button createButton, loadButton, startButton, quitButton, rLoadButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +35,11 @@ public class Home extends Activity {
         Constants.WIDTH = size.x;
         Constants.HEIGHT = size.y;
 
-        createButton = (Button) findViewById(R.id.home_create_button);
-        loadButton = (Button) findViewById(R.id.home_load_button);
-        startButton = (Button) findViewById(R.id.home_start_button);
-        quitButton = (Button) findViewById(R.id.home_quit_button);
-        rNewButton = (Button) findViewById(R.id.home_rnew_button);
-        rLoadButton = (Button) findViewById(R.id.home_rload_button);
+        createButton = findViewById(R.id.home_create_button);
+        loadButton = findViewById(R.id.home_load_button);
+        startButton = findViewById(R.id.home_start_button);
+        quitButton = findViewById(R.id.home_quit_button);
+        rLoadButton = findViewById(R.id.home_rload_button);
 
 
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -61,15 +60,6 @@ public class Home extends Activity {
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(Home.this, ChooseScript.class));
-                finish();
-            }
-        });
-
-        rNewButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Home.this, RobotEditor.class);
-                intent.putExtra("rload_from_key", "Home");
-                startActivity(intent);
                 finish();
             }
         });

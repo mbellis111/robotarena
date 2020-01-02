@@ -23,10 +23,8 @@ public class PopUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popupview);
 
-        okButton = (Button) findViewById(R.id.popup_done_button);
-        textBox = (EditText) findViewById(R.id.popuptext);
-        //textBox.setTextSize(//);
-
+        okButton = findViewById(R.id.popup_done_button);
+        textBox = findViewById(R.id.popuptext);
         fromClass = "";
 
         Bundle extras = getIntent().getExtras();
@@ -35,7 +33,6 @@ public class PopUp extends Activity {
             textBox.setText(extras.getString("popup_key"));
             fromClass = extras.getString("popup_fromscreen");
         }
-
 
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

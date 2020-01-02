@@ -16,7 +16,6 @@ public class Robot implements Serializable {
     private Robot nearestEnemy, lowestHPEnemy, highestHPEnemy;
     private BitmapDrawable picture = null;
     private Script script;
-    private static int id = 0;
     private String robotName;
 
     public Robot() {
@@ -35,8 +34,8 @@ public class Robot implements Serializable {
         damage = Constants.ROBOT_START_DAMAGE;
         missiles = Constants.ROBOT_START_MISSILES;
         buildPoints = Constants.ROBOT_BUILD_POINTS;
-        robot_id = ++id;
-        robotName = "Unnamed " + robot_id;
+        robot_id = 0;
+        robotName = "";
     }
 
     public Robot(double x, double y, Script script) {
@@ -181,10 +180,6 @@ public class Robot implements Serializable {
 
     public void setScript(Script script) {
         this.script = script;
-    }
-
-    public static void resetIds() {
-        id = 0;
     }
 
     public boolean isDetecting() {

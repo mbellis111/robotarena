@@ -14,12 +14,13 @@ import com.mbellis.DragNDrop.R;
 
 import game.Constants;
 import game.Robot;
+import game.RobotSaver;
 
 
 public class RobotEditor extends Activity {
 
     private Button addHp, minHp, addShields, minShields, addDamage, minDamage,
-            addMines, minMines, done, resetPoints;
+            addMines, minMines, done, resetPoints, back;
     private TextView hpText, shieldText, damageText, mineText, pointsText, nameText;
     private static Robot currRobot;
     private final int HPCHANGE = 5, HPCOST = 1, SHIELDCOST = 1, SHIELDCHANGE = 7,
@@ -41,6 +42,7 @@ public class RobotEditor extends Activity {
         minMines = findViewById(R.id.cust_m_mines);
         done = findViewById(R.id.cust_done);
         resetPoints = findViewById(R.id.cust_reset);
+        back = findViewById(R.id.edit_back);
 
         //text
         hpText = findViewById(R.id.cust_hp_val);
@@ -48,7 +50,7 @@ public class RobotEditor extends Activity {
         damageText = findViewById(R.id.cust_damage_val);
         mineText = findViewById(R.id.cust_mine_val);
         pointsText = findViewById(R.id.cust_points_val);
-        nameText = findViewById(R.id.editing_robot_name);
+        nameText = findViewById(R.id.edit_robot_name_field);
 
         // initiate text fields to default
         hpText.setText(String.valueOf(Constants.ROBOT_START_HP));
@@ -57,18 +59,6 @@ public class RobotEditor extends Activity {
         mineText.setText(String.valueOf(Constants.ROBOT_START_MISSILES));
         pointsText.setText(String.valueOf(Constants.ROBOT_BUILD_POINTS));
         nameText.setText("");
-
-        // figure out which screen came from
-        Bundle extras = getIntent().getExtras();
-
-        if (extras != null) {
-            String from = extras.getString("rload_from_key");
-            if (from != null) {
-                if (from.equals("Home")) {
-                    currRobot = new Robot();
-                }
-            }
-        }
 
         //init robot
         if (currRobot == null) {
@@ -157,18 +147,44 @@ public class RobotEditor extends Activity {
         });
         done.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                String robotName = nameText.getText().toString();
+
+                // check that the robot has a name
+                if (robotName.trim().equals("")) {
+                    PopUp.makeToast(RobotEditor.this, "Robot needs a name!");
+                    return;
+                }
+
                 if (currRobot.getBuildPoints() > 0) {
                     // spend all your points!
                     PopUp.makeToast(RobotEditor.this, "Points left to spend!");
-                } else {
-                    startActivity(new Intent(RobotEditor.this, RobotLoader.class));
-                    finish();
+                    return;
                 }
+
+                // save the robot
+                currRobot.setRobotName(robotName);
+
+                Robot currRobot = RobotEditor.getCustomRobot();
+                if (currRobot != null && RobotSaver.writeToFile(RobotEditor.this, currRobot, robotName)) {
+                    PopUp.makeToast(RobotEditor.this, "Robot saved");
+                } else {
+                    PopUp.makeToast(RobotEditor.this, "Error saving robot!");
+                }
+
+                startActivity(new Intent(RobotEditor.this, RobotLoader.class));
+                finish();
             }
         });
         resetPoints.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 resetAll();
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(RobotEditor.this, RobotLoader.class));
+                finish();
             }
         });
     }
@@ -187,6 +203,7 @@ public class RobotEditor extends Activity {
         currRobot.setDamage(Constants.ROBOT_START_DAMAGE);
         currRobot.setMissiles(Constants.ROBOT_START_MISSILES);
         currRobot.setBuildPoints(Constants.ROBOT_BUILD_POINTS);
+        currRobot.setRobotName("");
         updateFields();
     }
 
@@ -196,7 +213,7 @@ public class RobotEditor extends Activity {
         damageText.setText(String.valueOf(currRobot.getDamage()));
         mineText.setText(String.valueOf(currRobot.getMissiles()));
         pointsText.setText(String.format(getResources().getString(R.string.points_left), currRobot.getBuildPoints()));
-        nameText.setText(String.format(getResources().getString(R.string.robot_name), currRobot.getRobotName()));
+        nameText.setText(currRobot.getRobotName());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

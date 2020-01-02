@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RobotSaver {
 
@@ -126,7 +127,7 @@ public class RobotSaver {
         return c.deleteFile(fileName + "R.txt");
     }
 
-    public static void removeOneLine(Context c, ArrayList<String> lines, String line) {
+    public static void removeOneLine(Context c, List<String> lines, String line) {
         FileOutputStream fOut;
         try {
             fOut = c.openFileOutput(Constants.SAVEDROBOTS + ".txt", Context.MODE_PRIVATE);

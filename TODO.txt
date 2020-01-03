@@ -1,15 +1,22 @@
 
 THINGS TO DO OR FIX
 
-[]  Add Home button to script editor
+X   Add back button to script editor & clear all button
 
-[]  Fix the script editor from jumping when entering in a robot name
+-   Revamp the script editor helper screens (add function, add if, etc.)
+    Consider using tiles or something else to more clearly choose a variable/number/etc.
+    Consider displaying a helper message on each add screen showing the options (especially for functions)
 
-[]  Fix functionality to populate the robot name if it exists
+-   Fix the script editor from jumping when entering in a robot name
 
-[]  Redo all screens as constraint layouts, fix scaling to fit any phone
+X   Fix functionality to populate the robot name if it exists.
+    Added a listener to the edit texts to set the name when the done button is pressed
 
-[]  Add robot and script names, add clarity to editing / loading screens to display current robot / script
+-   Redo all screens as constraint layouts, fix scaling to fit any phone
+
+X   Add robot and script names, add clarity to editing / loading screens to display current robot / script
+
+-   Add in missile tracking
 
 X	Fix crash when no values enabled in start screen, or value missing
 

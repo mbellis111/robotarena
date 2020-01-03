@@ -92,4 +92,5 @@
     <string name="robot_edit_hint">Enter Name</string>
     <string name="script_edit_hint">Enter Name</string>
     <string name="back_text">Back</string>
+    <string name="clear_all">Clear All</string>
 </resources>

@@ -3,10 +3,12 @@ package dragNDrop;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -30,7 +32,7 @@ import screens.ScriptLoader;
 public class ScriptEditor extends ListActivity {
 
     private static ScriptStore scriptStore = null;
-    private Button addButton, removeButton, saveButton;
+    private Button addButton, removeButton, saveButton, backButton, clearAllButton;
     private TextView nameText;
 
     public static void addValueToStore(String text) {
@@ -73,6 +75,8 @@ public class ScriptEditor extends ListActivity {
         removeButton = findViewById(R.id.list_removebutton);
         saveButton = findViewById(R.id.list_savebutton);
         nameText = findViewById(R.id.scriptName);
+        backButton = findViewById(R.id.list_back_button);
+        clearAllButton = findViewById(R.id.list_clear_all_button);
 
         if (scriptStore != null) {
             nameText.setText(scriptStore.getScriptName());
@@ -98,6 +102,28 @@ public class ScriptEditor extends ListActivity {
                         listView.invalidateViews();
                     }
                 }
+            }
+        });
+
+        clearAllButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // clear all items
+                if (scriptStore.getContents().size() != 0) {
+                    resetScriptStore();
+
+                    //refresh the screen
+                    ListView listView = getListView();
+                    if (listView instanceof DragNDropListView) {
+                        listView.invalidateViews();
+                    }
+                }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(ScriptEditor.this, ScriptLoader.class));
+                finish();
             }
         });
 
@@ -131,6 +157,16 @@ public class ScriptEditor extends ListActivity {
 
                 startActivity(new Intent(ScriptEditor.this, ScriptLoader.class));
                 finish();
+            }
+        });
+        nameText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    String scriptName = v.getText().toString();
+                    scriptStore.setScriptName(scriptName);
+                }
+                return false;
             }
         });
     }
@@ -215,7 +251,5 @@ public class ScriptEditor extends ListActivity {
                         iv.setVisibility(View.VISIBLE);
                     }
                 }
-
             };
-
 }

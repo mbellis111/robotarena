@@ -40,7 +40,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/robot_edit_hint"
-        android:inputType="textPersonName"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintStart_toEndOf="@+id/editing_robot_name"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 

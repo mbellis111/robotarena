@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-     <string-array name="nodes">
+    <string-array name="nodes">
         <item>IF_THEN_ELSE</item>
         <item>WHILE</item>
         <item>FUNCTION</item>
         <item>BOOL_STATEMENT</item>
         <item>NOTHING</item>
     </string-array>
-    
-     <string-array name="functions">
+
+    <string-array name="functions">
         <item>MOVE</item>
         <item>SHOOT</item>
         <item>RELOAD</item>
@@ -16,13 +16,13 @@
         <item>DETECT</item>
         <item>MISSILE</item>
     </string-array>
-    
+
     <string-array name="detect_variables">
         <item>NEAREST_ENEMY</item>
         <item>LOWEST_HP_ENEMY</item>
         <item>HIGHEST_HP_ENEMY</item>
     </string-array>
-    
+
     <string-array name="direction_variables">
         <item>UP</item>
         <item>DOWN</item>
@@ -33,12 +33,12 @@
         <item>UP_RIGHT</item>
         <item>DOWN_RIGHT</item>
     </string-array>
-    
+
     <string-array name="other_variables">
         <item>ARENA_WIDTH</item>
         <item>ARENA_HEIGHT</item>
     </string-array>
-    
+
     <string-array name="value_variables">
         <item>AMMO</item>
         <item>HEALTH</item>
@@ -48,7 +48,7 @@
         <item>Y</item>
         <item>MISSILES</item>
     </string-array>
-    
+
     <string-array name="operator_variables">
         <item>EQUALS</item>
         <item>LESS_THAN</item>
@@ -56,6 +56,5 @@
         <item>LESS_EQUAL_THAN</item>
         <item>GREATER_EQUAL_THAN</item>
     </string-array>
-    
-     
+
 </resources>

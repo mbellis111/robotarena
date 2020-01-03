@@ -9,38 +9,41 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.RadioButton;
+
+import androidx.cardview.widget.CardView;
 
 import com.mbellis.DragNDrop.R;
 
 import dragNDrop.ScriptEditor;
-import nodes.Node.BlockType;
 
 public class Add extends Activity {
 
-    private BlockType nodeType;
-    private Button button;
-    private RadioButton if_button, while_button, nothing_button, function_button;
+    CardView functionCard, ifCard, whileCard, nothingCard;
+    Button backButton;
 
-    private OnClickListener radio_listener = new OnClickListener() {
+    private OnClickListener cardListener = new OnClickListener() {
 
         public void onClick(View v) {
-            // Perform action on clicks
-            RadioButton rb = (RadioButton) v;
-            try {
-                if (rb == if_button) {
-                    nodeType = BlockType.IF_THEN_ELSE;
-                } else if (rb == while_button) {
-                    nodeType = BlockType.WHILE;
-                } else if (rb == nothing_button) {
-                    nodeType = BlockType.NOTHING;
-                } else if (rb == function_button) {
-                    nodeType = BlockType.FUNCTION;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            CardView cv = (CardView) v;
+            Intent intent;
+            if (cv == functionCard) {
+                intent = new Intent(Add.this, AddFunction.class);
+                finish();
+            } else if (cv == whileCard) {
+                intent = new Intent(Add.this, AddBoolean.class);
+                intent.putExtra("add_data_type", "WHILE");
+            } else if (cv == ifCard) {
+                intent = new Intent(Add.this, AddBoolean.class);
+                intent.putExtra("add_data_type", "IF");
+            } else if (cv == nothingCard) {
+                ScriptEditor.addValueToStore("NOTHING");
+                intent = new Intent(Add.this, ScriptEditor.class);
+            } else {
+                // button not found, do nothing
+                return;
             }
+            startActivity(intent);
+            finish();
         }
     };
 
@@ -48,47 +51,22 @@ public class Add extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addview);
 
-        nodeType = BlockType.FUNCTION;
+        functionCard = findViewById(R.id.add_functionCard);
+        ifCard = findViewById(R.id.add_ifCard);
+        whileCard = findViewById(R.id.add_whileCard);
+        nothingCard = findViewById(R.id.add_nothingCard);
 
-        button = findViewById(R.id.button_add);
-        nothing_button = findViewById(R.id.add_nothing);
-        function_button = findViewById(R.id.add_function);
-        if_button = findViewById(R.id.add_if);
-        while_button = findViewById(R.id.add_while);
+        backButton = findViewById(R.id.add_back_button);
 
-        nothing_button.setOnClickListener(radio_listener);
-        function_button.setOnClickListener(radio_listener);
-        if_button.setOnClickListener(radio_listener);
-        while_button.setOnClickListener(radio_listener);
+        functionCard.setOnClickListener(cardListener);
+        ifCard.setOnClickListener(cardListener);
+        whileCard.setOnClickListener(cardListener);
+        nothingCard.setOnClickListener(cardListener);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                switch (nodeType) {
-                    case FUNCTION:
-                        startActivity(new Intent(Add.this, AddFunction.class));
-                        finish();
-                        return;
-                    case WHILE:
-                        Intent while_intent = new Intent(Add.this, AddBoolean.class);
-                        while_intent.putExtra("add_data_type", "WHILE");
-                        startActivity(while_intent);
-                        finish();
-                        return;
-                    case IF_THEN_ELSE:
-                        Intent if_intent = new Intent(Add.this, AddBoolean.class);
-                        if_intent.putExtra("add_data_type", "IF");
-                        startActivity(if_intent);
-                        finish();
-                        return;
-                    case NOTHING:
-                        ScriptEditor.addValueToStore("NOTHING");
-                        startActivity(new Intent(Add.this, ScriptEditor.class));
-                        finish();
-                        return;
-                    default:
-                        startActivity(new Intent(Add.this, ScriptEditor.class));
-                        finish();
-                }
+                startActivity(new Intent(Add.this, ScriptEditor.class));
+                finish();
             }
         });
     }

@@ -61,9 +61,9 @@
     <string name="save_text">Save</string>
     <string name="ok_text">OK</string>
     <string name="syntax_text">Syntax Error</string>
-    <string name="add_function">FUNCTION</string>
-    <string name="add_if">IF_THEN_ELSE</string>
-    <string name="add_while">WHILE</string>
+    <string name="add_function">ACTION</string>
+    <string name="add_if">CONDITIONAL STATEMENT</string>
+    <string name="add_while">LOOP</string>
     <string name="add_statement">BOOLEAN_STATEMENT</string>
     <string name="value_text">VALUE</string>
     <string name="operator_text">OPERATOR</string>
@@ -93,4 +93,9 @@
     <string name="script_edit_hint">Enter Name</string>
     <string name="back_text">Back</string>
     <string name="clear_all">Clear All</string>
+    <string name="add_func_details">Perform an action: Move, Shoot, Reload, Shield, Missile, Detect</string>
+    <string name="add_if_details">Check a condition and choose how to act</string>
+    <string name="add_while_details">Continue acting while condition is valid</string>
+    <string name="add_nothing_details">Perform no action (often used in conditionals)</string>
+
 </resources>

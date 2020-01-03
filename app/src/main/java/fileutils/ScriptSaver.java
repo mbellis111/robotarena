@@ -64,11 +64,8 @@ public class ScriptSaver {
             existingScripts.add(fileName);
             List<String> sortedScripts = FileSaver.sortAndRemoveDuplicates(existingScripts);
             return FileSaver.writeToFile(c, sortedScripts, Constants.SAVEDSCRIPTS);
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
-        } catch (IOException ie) {
-            ie.printStackTrace();
             return false;
         }
     }

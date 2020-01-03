@@ -138,13 +138,17 @@ public class ScriptEditor extends ListActivity {
                     return;
                 }
 
+                if (scriptStore == null || scriptStore.getContents() == null || scriptStore.getContents().isEmpty()) {
+                    PopUp.makeToast(ScriptEditor.this, "No script to save!");
+                    return;
+                }
+
                 // check the syntax of the script
-                if (scriptStore.getContents() != null && scriptStore.getContents().size() > 0) {
-                    Parser p = new Parser(scriptStore.getContents());
-                    ErrorMessage error = p.checkForSyntaxErrors();
-                    if (error != ErrorMessage.GOOD) {
-                        PopUp.makeToast(ScriptEditor.this, p.errorToString(error), Toast.LENGTH_LONG);
-                    }
+                Parser p = new Parser(scriptStore.getContents());
+                ErrorMessage error = p.checkForSyntaxErrors();
+                if (error != ErrorMessage.GOOD) {
+                    PopUp.makeToast(ScriptEditor.this, p.errorToString(error), Toast.LENGTH_LONG);
+                    return;
                 }
 
                 // save the script

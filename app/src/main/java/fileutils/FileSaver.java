@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,7 +22,7 @@ public class FileSaver {
         FileInputStream fIn;
         InputStreamReader isr;
         BufferedReader br;
-        ArrayList<String> list = null;
+        ArrayList<String> list;
         try {
             fIn = c.openFileInput(fileName + ".txt");
             isr = new InputStreamReader(fIn);
@@ -34,9 +33,6 @@ public class FileSaver {
                 list.add(s);
             }
             br.close();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-            return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -71,11 +67,8 @@ public class FileSaver {
             osw.flush();
             osw.close();
             return true;
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
-        } catch (IOException ie) {
-            ie.printStackTrace();
             return false;
         }
     }

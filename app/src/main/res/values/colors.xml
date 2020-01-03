@@ -6,4 +6,5 @@
     <color name="yellow">#FFFF00</color>
     <color name="black">#000000</color>
     <color name="purple">#B23AEE</color>
+    <color name="partial_transparent">#60000000</color>
 </resources>

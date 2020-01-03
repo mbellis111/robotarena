@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import nodes.Node;
 import nodes.Parser;
 import nodes.Script;
+import nodes.ScriptStore;
 import screens.ChooseScript;
 
 
@@ -30,60 +31,65 @@ public class SetUp {
         double leftX = Constants.OFFSETX, rightX = Constants.WIDTH - Constants.OFFSETX - Constants.ROBOT_SIZE;
         double topY = Constants.OFFSETY, botY = Constants.HEIGHT - Constants.OFFSETY - Constants.ROBOT_SIZE;
 
+
+        ScriptStore scriptStore;
+        Robot r;
+        Parser p;
+        Node headNode;
+
         // player
-        ArrayList<String> list;
-        list = ChooseScript.playerScript;
-        Parser p = new Parser(list);
-        Node headNode = p.createTree();
-        Robot r = ChooseScript.playerRobot;
+        scriptStore = ChooseScript.playerScript;
+        p = new Parser(scriptStore.getContents());
+        headNode = p.createTree();
+        r = ChooseScript.playerRobot;
         r.setX(leftX);
         r.setY(topY);
         r.setId(1);
-        //Robot r = new Robot(leftX, topY);
         Script s = new Script(headNode, r);
-        s.setTokensInScript(list.size());
+        s.setScriptName(scriptStore.getScriptName());
+        s.setTokensInScript(scriptStore.getContents().size());
         r.setScript(s);
         robots.add(r);
 
         // robot 1
-        list = ChooseScript.enemy1Script;
-        p = new Parser(list);
+        scriptStore = ChooseScript.enemy1Script;
+        p = new Parser(scriptStore.getContents());
         headNode = p.createTree();
-        //r = new Robot(rightX, topY);
         r = ChooseScript.enemy1Robot;
         r.setX(rightX);
         r.setY(topY);
         r.setId(2);
         s = new Script(headNode, r);
-        s.setTokensInScript(list.size());
+        s.setScriptName(scriptStore.getScriptName());
+        s.setTokensInScript(scriptStore.getContents().size());
         r.setScript(s);
         robots.add(r);
 
         // robot 2
-        list = ChooseScript.enemy2Script;
-        p = new Parser(list);
+        scriptStore = ChooseScript.enemy2Script;
+        p = new Parser(scriptStore.getContents());
         headNode = p.createTree();
-        //r = new Robot(leftX, botY);
         r = ChooseScript.enemy2Robot;
         r.setX(leftX);
         r.setY(botY);
         r.setId(3);
         s = new Script(headNode, r);
-        s.setTokensInScript(list.size());
+        s.setScriptName(scriptStore.getScriptName());
+        s.setTokensInScript(scriptStore.getContents().size());
         r.setScript(s);
         robots.add(r);
 
         // robot 3
-        list = ChooseScript.enemy3Script;
-        p = new Parser(list);
+        scriptStore = ChooseScript.enemy3Script;
+        p = new Parser(scriptStore.getContents());
         headNode = p.createTree();
-        //r = new Robot(rightX, botY);
         r = ChooseScript.enemy3Robot;
         r.setX(rightX);
         r.setY(botY);
         r.setId(4);
         s = new Script(headNode, r);
-        s.setTokensInScript(list.size());
+        s.setScriptName(scriptStore.getScriptName());
+        s.setTokensInScript(scriptStore.getContents().size());
         r.setScript(s);
         robots.add(r);
     }

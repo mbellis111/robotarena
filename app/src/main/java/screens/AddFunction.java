@@ -18,7 +18,7 @@ import android.widget.Spinner;
 
 import com.mbellis.DragNDrop.R;
 
-import dragNDrop.DragNDropListActivity;
+import dragNDrop.ScriptEditor;
 
 public class AddFunction extends Activity {
     private Spinner function_spinner, variable_spinner, direction_spinner;
@@ -76,15 +76,15 @@ public class AddFunction extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addfunctionview);
 
-        function_spinner = (Spinner) findViewById(R.id.function_spinner);
-        variable_spinner = (Spinner) findViewById(R.id.variable_spinner);
-        direction_spinner = (Spinner) findViewById(R.id.direction_spinner);
-        text_button = (RadioButton) findViewById(R.id.text_button);
-        variable_button = (RadioButton) findViewById(R.id.variable_button);
-        null_button = (RadioButton) findViewById(R.id.null_button);
-        direction_button = (RadioButton) findViewById(R.id.direction_button);
-        done_button = (Button) findViewById(R.id.done_button);
-        editText = (EditText) findViewById(R.id.text_box_edit);
+        function_spinner = findViewById(R.id.function_spinner);
+        variable_spinner = findViewById(R.id.variable_spinner);
+        direction_spinner = findViewById(R.id.direction_spinner);
+        text_button = findViewById(R.id.text_button);
+        variable_button = findViewById(R.id.variable_button);
+        null_button = findViewById(R.id.null_button);
+        direction_button = findViewById(R.id.direction_button);
+        done_button = findViewById(R.id.done_button);
+        editText = findViewById(R.id.text_box_edit);
 
         // set up all the spinners
         ArrayAdapter<?> function_adapter = ArrayAdapter.createFromResource(this,
@@ -115,7 +115,7 @@ public class AddFunction extends Activity {
         done_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // do stuff here
-                // so send data over to the other app, namely the DragNDropListActivity
+                // so send data over to the other app, namely the ScriptEditor
 
                 /*
                  * Testing some things here
@@ -140,8 +140,8 @@ public class AddFunction extends Activity {
                 } else {
                     function = function_option + " " + final_option;
                 }
-                DragNDropListActivity.addStringToList(function);
-                startActivity(new Intent(AddFunction.this, DragNDropListActivity.class));
+                ScriptEditor.addValueToStore(function);
+                startActivity(new Intent(AddFunction.this, ScriptEditor.class));
                 finish();
             }
         });
@@ -175,7 +175,7 @@ public class AddFunction extends Activity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(AddFunction.this, DragNDropListActivity.class));
+        startActivity(new Intent(AddFunction.this, ScriptEditor.class));
         finish();
     }
 }

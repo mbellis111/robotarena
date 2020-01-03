@@ -14,7 +14,7 @@ import com.mbellis.DragNDrop.R;
 
 import game.Constants;
 import game.Robot;
-import game.RobotSaver;
+import fileutils.RobotSaver;
 
 
 public class RobotEditor extends Activity {
@@ -166,7 +166,7 @@ public class RobotEditor extends Activity {
                 currRobot.setRobotName(robotName);
 
                 Robot currRobot = RobotEditor.getCustomRobot();
-                if (currRobot != null && RobotSaver.writeToFile(RobotEditor.this, currRobot, robotName)) {
+                if (currRobot != null && RobotSaver.saveRobot(RobotEditor.this, currRobot, robotName)) {
                     PopUp.makeToast(RobotEditor.this, "Robot saved");
                 } else {
                     PopUp.makeToast(RobotEditor.this, "Error saving robot!");

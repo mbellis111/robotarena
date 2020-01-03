@@ -28,7 +28,7 @@ public class Parser {
         IFORDER, ELSEORDER, FUNCTIONNEEDVALUE, MISSILENEEDNUMBER, INFINITELOOP;
     }
 
-    private ArrayList<String> list;
+    private List<String> list;
     private int pIndex;
     private Map<Integer, Integer> indexMap;
     private int recDepth;
@@ -53,7 +53,7 @@ public class Parser {
         }
     }
 
-    public Parser(ArrayList<String> list) {
+    public Parser(List<String> list) {
         this.list = list;
         pIndex = -1;
         recDepth = -1;
@@ -528,7 +528,7 @@ public class Parser {
         return new ErrorData(ErrorMessage.GOOD, index);
     }
 
-    private List<TokenData> tokenize(ArrayList<String> strings) {
+    private List<TokenData> tokenize(List<String> strings) {
         List<TokenData> tokens = new LinkedList<TokenData>();
         for (String s : strings) {
             List<TokenData> temp = stringToTokens(s);

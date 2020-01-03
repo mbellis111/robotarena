@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.mbellis.DragNDrop.R;
 
-import dragNDrop.DragNDropListActivity;
+import dragNDrop.ScriptEditor;
 
 public class PopUp extends Activity {
     private Button okButton;
@@ -36,10 +36,10 @@ public class PopUp extends Activity {
 
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (fromClass.equals("DragNDropListActivity")) {
-                    startActivity(new Intent(PopUp.this, DragNDropListActivity.class));
-                } else if (fromClass.equals("ScriptEditor")) {
+                if (fromClass.equals("ScriptEditor")) {
                     startActivity(new Intent(PopUp.this, ScriptEditor.class));
+                } else if (fromClass.equals("ScriptLoader")) {
+                    startActivity(new Intent(PopUp.this, ScriptLoader.class));
                 } else if (fromClass.equals("ChooseScript")) {
                     startActivity(new Intent(PopUp.this, ChooseScript.class));
                 } else if (fromClass.equals("RobotLoader")) {

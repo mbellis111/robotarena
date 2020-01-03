@@ -15,7 +15,7 @@ import com.mbellis.DragNDrop.R;
 
 import java.util.ArrayList;
 
-import dragNDrop.DragNDropListActivity;
+import dragNDrop.ScriptEditor;
 import game.Arena;
 import game.StatTracker;
 
@@ -60,7 +60,7 @@ public class GameOver extends Activity {
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DragNDropListActivity.resetContent();
+                ScriptEditor.resetContent();
                 startActivity(new Intent(GameOver.this, Home.class));
                 finish();
             }

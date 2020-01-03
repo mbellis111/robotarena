@@ -17,7 +17,7 @@ import android.widget.Spinner;
 
 import com.mbellis.DragNDrop.R;
 
-import dragNDrop.DragNDropListActivity;
+import dragNDrop.ScriptEditor;
 
 public class AddBoolean extends Activity {
     private String dataType, chosen_value, chosen_operator, chosen_var;
@@ -59,12 +59,12 @@ public class AddBoolean extends Activity {
             dataType = extras.getString("add_data_type");
         }
 
-        value_spinner = (Spinner) findViewById(R.id.booleanvaluespinner);
-        operator_spinner = (Spinner) findViewById(R.id.booleanoperatorspinner);
-        var_spinner = (Spinner) findViewById(R.id.arenaCoordsSpinner);
-        done_button = (Button) findViewById(R.id.booleandonebutton);
-        number_text = (EditText) findViewById(R.id.booleannumberinput);
-        checkBox = (CheckBox) findViewById(R.id.useNumberCheck);
+        value_spinner = findViewById(R.id.booleanvaluespinner);
+        operator_spinner = findViewById(R.id.booleanoperatorspinner);
+        var_spinner = findViewById(R.id.arenaCoordsSpinner);
+        done_button = findViewById(R.id.booleandonebutton);
+        number_text = findViewById(R.id.booleannumberinput);
+        checkBox = findViewById(R.id.useNumberCheck);
 
         checkBox.setChecked(true);
 
@@ -100,20 +100,20 @@ public class AddBoolean extends Activity {
                     function = "( " + chosen_value + " " + chosen_operator + " " + chosen_var + " )";
                 }
                 if (dataType.equals("WHILE")) {
-                    DragNDropListActivity.addStringToList(dataType + " " + function);
-                    DragNDropListActivity.addStringToList("END_WHILE");
-                    startActivity(new Intent(AddBoolean.this, DragNDropListActivity.class));
+                    ScriptEditor.addValueToStore(dataType + " " + function);
+                    ScriptEditor.addValueToStore("END_WHILE");
+                    startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
                     finish();
                 } else if (dataType.equals("IF")) {
-                    DragNDropListActivity.addStringToList(dataType + " " + function);
-                    DragNDropListActivity.addStringToList("END_IF");
-                    DragNDropListActivity.addStringToList("ELSE");
-                    DragNDropListActivity.addStringToList("END_ELSE");
-                    startActivity(new Intent(AddBoolean.this, DragNDropListActivity.class));
+                    ScriptEditor.addValueToStore(dataType + " " + function);
+                    ScriptEditor.addValueToStore("END_IF");
+                    ScriptEditor.addValueToStore("ELSE");
+                    ScriptEditor.addValueToStore("END_ELSE");
+                    startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
                     finish();
                 } else {
                     // some sort of error
-                    startActivity(new Intent(AddBoolean.this, DragNDropListActivity.class));
+                    startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
                     finish();
                 }
             }
@@ -149,7 +149,7 @@ public class AddBoolean extends Activity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(AddBoolean.this, DragNDropListActivity.class));
+        startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
         finish();
     }
 

@@ -9,23 +9,24 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class DragNDropAdapter extends BaseAdapter implements RemoveListener, DropListener {
 
     private int[] mIds;
     private int[] mLayouts;
     private LayoutInflater mInflater;
-    private ArrayList<String> mContent;
+    private List<String> mContent;
 
     public DragNDropAdapter(Context context, ArrayList<String> content) {
         init(context, new int[]{android.R.layout.simple_list_item_1}, new int[]{android.R.id.text1}, content);
     }
 
-    public DragNDropAdapter(Context context, int[] itemLayouts, int[] itemIDs, ArrayList<String> content) {
+    public DragNDropAdapter(Context context, int[] itemLayouts, int[] itemIDs, List<String> content) {
         init(context, itemLayouts, itemIDs, content);
     }
 
-    private void init(Context context, int[] layouts, int[] ids, ArrayList<String> content) {
+    private void init(Context context, int[] layouts, int[] ids, List<String> content) {
         // Cache the LayoutInflate to avoid asking for a new one each time.
         mInflater = LayoutInflater.from(context);
         mIds = ids;

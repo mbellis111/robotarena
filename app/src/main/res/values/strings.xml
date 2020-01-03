@@ -10,8 +10,8 @@
     <string name="player_script_text">Choose Player Script and Robot</string>
     <string name="enemy_script_text">Choose Enemy Scripts and Robot</string>
     <string name="help_name">Help Screen</string>
-    <string name="delete_text">Delete Current Script</string>
-    <string name="delete_all_text">Delete All Scripts</string>
+    <string name="delete_script_text">Delete Script</string>
+    <string name="delete_all_scripts_text">Delete All Scripts</string>
     <string name="delete_robot_text">Delete Robot</string>
     <string name="delete_all_robots_text">Delete All Robots</string>
     <string name="start_text">Start Game!</string>
@@ -29,10 +29,10 @@
     <string name="enemy3_text">Enemy 3</string>
     <string name="robot_cust_text">Customize Robot</string>
     <string name="game_over_text">Game Over!</string>
-    <string name="edit_script_text">Edit Current Script</string>
-    <string name="edit_scripts_text">Script Editor</string>
+    <string name="edit_script_text">Edit Script</string>
+    <string name="script_editor_text">Script Editor</string>
     <string name="edit_robot_text">Edit Robot</string>
-    <string name="script_name_text">Current Script Name</string>
+    <string name="script_name_text">Script Name</string>
     <string name="robot_name_text">Robot Name</string>
     <string name="robot_editor_text">Robot Editor</string>
     <string name="robot_load_screen">Edit Robot</string>
@@ -52,8 +52,9 @@
     <string name="done_text">Done</string>
     <string name="create_script_text">Create Script</string>
     <string name="load_script_text">Load Script</string>
-    <string name="save_script_text">Save Current Script</string>
+    <string name="save_script_text">Save Script</string>
     <string name="select_robot_text">Select Robot</string>
+    <string name="select_script_text">Select Script</string>
     <string name="save_robot_text">Save Robot</string>
     <string name="robot_load_text">Robot Editor</string>
     <string name="robot_new_text">Create Robot</string>

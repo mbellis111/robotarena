@@ -33,38 +33,23 @@
         android:id="@+id/home_load_button"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/edit_scripts_text"
+        android:layout_marginBottom="44dp"
+        android:text="@string/script_editor_text"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/home_start_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_rload_button" />
-
-    <Button
-        android:id="@+id/home_create_button"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="84dp"
-        android:gravity="center"
-        android:text="@string/create_script_text"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_text" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/home_rload_button"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/robot_load_text"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/home_load_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_create_button" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/title_text"

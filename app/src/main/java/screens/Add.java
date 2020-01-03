@@ -13,7 +13,7 @@ import android.widget.RadioButton;
 
 import com.mbellis.DragNDrop.R;
 
-import dragNDrop.DragNDropListActivity;
+import dragNDrop.ScriptEditor;
 import nodes.Node.BlockType;
 
 public class Add extends Activity {
@@ -50,11 +50,11 @@ public class Add extends Activity {
 
         nodeType = BlockType.FUNCTION;
 
-        button = (Button) findViewById(R.id.button_add);
-        nothing_button = (RadioButton) findViewById(R.id.add_nothing);
-        function_button = (RadioButton) findViewById(R.id.add_function);
-        if_button = (RadioButton) findViewById(R.id.add_if);
-        while_button = (RadioButton) findViewById(R.id.add_while);
+        button = findViewById(R.id.button_add);
+        nothing_button = findViewById(R.id.add_nothing);
+        function_button = findViewById(R.id.add_function);
+        if_button = findViewById(R.id.add_if);
+        while_button = findViewById(R.id.add_while);
 
         nothing_button.setOnClickListener(radio_listener);
         function_button.setOnClickListener(radio_listener);
@@ -81,14 +81,13 @@ public class Add extends Activity {
                         finish();
                         return;
                     case NOTHING:
-                        DragNDropListActivity.addStringToList("NOTHING");
-                        startActivity(new Intent(Add.this, DragNDropListActivity.class));
+                        ScriptEditor.addValueToStore("NOTHING");
+                        startActivity(new Intent(Add.this, ScriptEditor.class));
                         finish();
                         return;
                     default:
-                        startActivity(new Intent(Add.this, DragNDropListActivity.class));
+                        startActivity(new Intent(Add.this, ScriptEditor.class));
                         finish();
-                        return; // do nothing
                 }
             }
         });
@@ -122,7 +121,7 @@ public class Add extends Activity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(Add.this, DragNDropListActivity.class));
+        startActivity(new Intent(Add.this, ScriptEditor.class));
         finish();
     }
 

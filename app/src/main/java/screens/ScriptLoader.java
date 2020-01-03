@@ -19,45 +19,46 @@ import com.mbellis.DragNDrop.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import dragNDrop.ScriptEditor;
 import fileutils.FileSaver;
-import fileutils.RobotSaver;
+import fileutils.ScriptSaver;
 import game.Constants;
-import game.Robot;
+import nodes.ScriptStore;
 
-public class RobotLoader extends Activity {
+public class ScriptLoader extends Activity {
     private Spinner saveSpinner;
     private Button editButton, homeButton, deleteButton, deleteAllButton;
 
-    public static final String NEW_ROBOT_TEXT = "-New Robot-";
+    public static final String NEW_SCRIPT_TEXT = "-New Script-";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loadrobotlayout);
+        setContentView(R.layout.loadscriptlayout);
 
-        saveSpinner = findViewById(R.id.r_save_spinner);
-        editButton = findViewById(R.id.r_save_edit_button);
-        homeButton = findViewById(R.id.r_save_home_button);
-        deleteButton = findViewById(R.id.r_save_delete_button);
-        deleteAllButton = findViewById(R.id.r_save_deleteall_button);
+        saveSpinner = findViewById(R.id.s_save_spinner);
+        editButton = findViewById(R.id.s_save_edit_button);
+        homeButton = findViewById(R.id.s_save_home_button);
+        deleteButton = findViewById(R.id.s_save_delete_button);
+        deleteAllButton = findViewById(R.id.s_save_deleteall_button);
 
-        List<String> robots = FileSaver.readFromFile(this, Constants.SAVEDROBOTS);
-        if (robots == null) {
-            robots = new ArrayList<String>();
+        List<String> scripts = FileSaver.readFromFile(this, Constants.SAVEDSCRIPTS);
+        if (scripts == null) {
+            scripts = new ArrayList<String>();
         } else {
             // sort alphabetically
-            robots = FileSaver.sortAndRemoveDuplicates(robots);
+           scripts = FileSaver.sortAndRemoveDuplicates(scripts);
         }
 
         ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         save_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         saveSpinner.setAdapter(save_adapter);
-        resetSpinnerAdapter(robots);
+        resetSpinnerAdapter(scripts);
 
-        // select the current robot if it exists
-        Robot currentRobot = RobotEditor.getCustomRobot();
-        if (currentRobot != null) {
-            String robotName = currentRobot.getRobotName();
-            int pos = getPositionOfItem(robotName);
+        // select the current script if it exists
+        ScriptStore currentScript = ScriptEditor.getScriptStore();
+        if (currentScript != null) {
+            String scriptName = currentScript.getScriptName();
+            int pos = getPositionOfItem(scriptName);
             if (pos != -1) {
                 saveSpinner.setSelection(pos);
             }
@@ -65,26 +66,26 @@ public class RobotLoader extends Activity {
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(RobotLoader.this, Home.class));
+                startActivity(new Intent(ScriptLoader.this, Home.class));
                 finish();
             }
         });
 
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String robotName = getSelectedRobotName();
+                String scriptName = getSelectedScriptName();
 
-                if (robotName.equals(NEW_ROBOT_TEXT)) {
-                    RobotEditor.setCustomRobot(null);
+                if (scriptName.equals(NEW_SCRIPT_TEXT)) {
+                    ScriptEditor.resetScriptStore();
                 } else {
-                    Robot r = RobotSaver.getRobotFromFile(RobotLoader.this, robotName);
-                    if (r == null) {
-                        PopUp.makeToast(RobotLoader.this, "Robot not found!");
+                    ScriptStore scriptStore = ScriptSaver.getScriptStoreFromFile(ScriptLoader.this, scriptName);
+                    if (scriptStore == null) {
+                        PopUp.makeToast(ScriptLoader.this, "Script not found!");
                         return;
                     }
-                    RobotEditor.setCustomRobot(r);
+                    ScriptEditor.setScriptStore(scriptStore);
                 }
-                Intent intent = new Intent(RobotLoader.this, RobotEditor.class);
+                Intent intent = new Intent(ScriptLoader.this, ScriptEditor.class);
                 startActivity(intent);
                 finish();
             }
@@ -92,21 +93,21 @@ public class RobotLoader extends Activity {
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String robotName = getSelectedRobotName();
+                String scriptName = getSelectedScriptName();
 
-                List<String> robots = FileSaver.readFromFile(RobotLoader.this, Constants.SAVEDROBOTS);
-                if (robotName == null || robots == null || !robots.contains(robotName)) {
-                    PopUp.makeToast(RobotLoader.this, "Robot not found!");
+                List<String> scripts = FileSaver.readFromFile(ScriptLoader.this, Constants.SAVEDSCRIPTS);
+                if (scriptName == null || scripts == null || !scripts.contains(scriptName)) {
+                    PopUp.makeToast(ScriptLoader.this, "Robot not found!");
                     return;
                 }
 
-                if (RobotSaver.deleteFile(RobotLoader.this, robotName)) {
-                    robots.remove(robotName);
-                    FileSaver.writeToFile(RobotLoader.this, robots, Constants.SAVEDROBOTS);
-                    resetSpinnerAdapter(robots);
-                    PopUp.makeToast(RobotLoader.this, "Robot deleted");
+                if (ScriptSaver.deleteFile(ScriptLoader.this, scriptName)) {
+                    scripts.remove(scriptName);
+                    FileSaver.writeToFile(ScriptLoader.this, scripts, Constants.SAVEDSCRIPTS);
+                    resetSpinnerAdapter(scripts);
+                    PopUp.makeToast(ScriptLoader.this, "Script deleted");
                 } else {
-                    PopUp.makeToast(RobotLoader.this, "Error deleting robot!");
+                    PopUp.makeToast(ScriptLoader.this, "Error deleting script!");
                 }
             }
         });
@@ -114,20 +115,20 @@ public class RobotLoader extends Activity {
         deleteAllButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(RobotLoader.this);
-                alert.setMessage("Confirm deletion of all robots? Cannot be undone!");
+                AlertDialog.Builder alert = new AlertDialog.Builder(ScriptLoader.this);
+                alert.setMessage("Confirm deletion of all scripts? Cannot be undone!");
                 alert.setTitle("Delete all files...");
                 alert.setPositiveButton("Ok", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        deleteAllRobots();
+                        deleteAllScripts();
                     }
                 });
 
                 alert.setNegativeButton("Cancel", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        PopUp.makeToast(RobotLoader.this, "Cancelled!");
+                        PopUp.makeToast(ScriptLoader.this, "Cancelled!");
                     }
                 });
 
@@ -136,34 +137,34 @@ public class RobotLoader extends Activity {
         });
     }
 
-    private String getSelectedRobotName() {
+    private String getSelectedScriptName() {
         return saveSpinner.getSelectedItem().toString();
     }
 
-    private void resetSpinnerAdapter(List<String> robots) {
+    private void resetSpinnerAdapter(List<String> scripts) {
         @SuppressWarnings("unchecked")
         ArrayAdapter<String> adapter = (ArrayAdapter<String>) saveSpinner.getAdapter();
         adapter.clear();
-        adapter.add(NEW_ROBOT_TEXT);
-        if (robots != null && !robots.isEmpty()) {
-            adapter.addAll(robots);
+        adapter.add(NEW_SCRIPT_TEXT);
+        if (scripts != null && !scripts.isEmpty()) {
+            adapter.addAll(scripts);
         }
         adapter.notifyDataSetChanged();
     }
 
-    private int getPositionOfItem(String robotName) {
+    private int getPositionOfItem(String scriptName) {
         @SuppressWarnings("unchecked")
         ArrayAdapter<String> adapter = (ArrayAdapter<String>) saveSpinner.getAdapter();
-        return adapter.getPosition(robotName);
+        return adapter.getPosition(scriptName);
     }
 
-    public void deleteAllRobots() {
-        if (RobotSaver.deleteAllFiles(RobotLoader.this)) {
+    public void deleteAllScripts() {
+        if (ScriptSaver.deleteAllFiles(ScriptLoader.this)) {
             resetSpinnerAdapter(null);
-            PopUp.makeToast(RobotLoader.this, "All files deleted!");
+            PopUp.makeToast(ScriptLoader.this, "All files deleted!");
             return;
         }
-        PopUp.makeToast(RobotLoader.this, "Error deleting all files!");
+        PopUp.makeToast(ScriptLoader.this, "Error deleting all files!");
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

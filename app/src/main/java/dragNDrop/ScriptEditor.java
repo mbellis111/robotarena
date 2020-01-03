@@ -15,40 +15,50 @@ import android.widget.Toast;
 
 import com.mbellis.DragNDrop.R;
 
-import java.util.ArrayList;
-
+import fileutils.ScriptSaver;
 import nodes.Parser;
 import nodes.Parser.ErrorMessage;
+import nodes.ScriptStore;
 import screens.About;
 import screens.Add;
 import screens.Help;
 import screens.Home;
 import screens.PopUp;
-import screens.ScriptEditor;
+import screens.ScriptLoader;
 
-public class DragNDropListActivity extends ListActivity {
+public class ScriptEditor extends ListActivity {
 
-    public static ArrayList<String> content = null;
+    private static ScriptStore scriptStore = null;
     private Button addButton, removeButton, saveButton;
 
-    public static void addStringToList(String text) {
-        content.add(text);
+    public static void addValueToStore(String text) {
+        if (scriptStore != null) {
+            scriptStore.addValue(text);
+        }
     }
 
-    public static void resetContent() {
-        content = new ArrayList<String>();
+    public static void resetScriptStore() {
+        scriptStore = new ScriptStore();
     }
+
+    public static ScriptStore getScriptStore() {
+        return scriptStore;
+    }
+
+    public static void setScriptStore(ScriptStore scriptStore) {
+        ScriptEditor.scriptStore = scriptStore;
+    }
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.dragndroplistview);
-        if (content == null) {
-            content = new ArrayList<String>();
+        setContentView(R.layout.scripteditorview);
+        if (scriptStore == null) {
+            resetScriptStore();
         }
 
-
-        setListAdapter(new DragNDropAdapter(this, new int[]{R.layout.dragitem}, new int[]{R.id.TextView01}, content));
+        setListAdapter(new DragNDropAdapter(this, new int[]{R.layout.dragitem}, new int[]{R.id.TextView01}, scriptStore.getContents()));
         ListView listView = getListView();
 
         if (listView instanceof DragNDropListView) {
@@ -57,15 +67,14 @@ public class DragNDropListActivity extends ListActivity {
             ((DragNDropListView) listView).setDragListener(mDragListener);
         }
 
-        addButton = (Button) findViewById(R.id.list_addbutton);
-        removeButton = (Button) findViewById(R.id.list_removebutton);
-        saveButton = (Button) findViewById(R.id.list_savebutton);
-
+        addButton = findViewById(R.id.list_addbutton);
+        removeButton = findViewById(R.id.list_removebutton);
+        saveButton = findViewById(R.id.list_savebutton);
 
         // set up button listeners
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(DragNDropListActivity.this, Add.class));
+                startActivity(new Intent(ScriptEditor.this, Add.class));
                 finish();
             }
         });
@@ -73,8 +82,8 @@ public class DragNDropListActivity extends ListActivity {
         removeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // get rid of the bottom item on the list
-                if (content.size() != 0) {
-                    content.remove(content.size() - 1);
+                if (scriptStore.getContents().size() != 0) {
+                    scriptStore.getContents().remove(scriptStore.getContents().size() - 1);
 
                     //refresh the screen
                     ListView listView = getListView();
@@ -87,18 +96,34 @@ public class DragNDropListActivity extends ListActivity {
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (content != null && content.size() > 0) {
-                    Parser p = new Parser(content);
+
+                String scriptName = nameText.getText().toString();
+
+                // check that the script has a name
+                if (scriptName.trim().equals("")) {
+                    PopUp.makeToast(ScriptEditor.this, "Script needs a name!");
+                    return;
+                }
+
+                // check the syntax of the script
+                if (scriptStore.getContents() != null && scriptStore.getContents().size() > 0) {
+                    Parser p = new Parser(scriptStore.getContents());
                     ErrorMessage error = p.checkForSyntaxErrors();
                     if (error != ErrorMessage.GOOD) {
-                        PopUp.makeToast(DragNDropListActivity.this, p.errorToString(error), Toast.LENGTH_LONG);
-                    } else {
-                        startActivity(new Intent(DragNDropListActivity.this, ScriptEditor.class));
-                        finish();
+                        PopUp.makeToast(ScriptEditor.this, p.errorToString(error), Toast.LENGTH_LONG);
                     }
-                } else {
-                    PopUp.makeToast(DragNDropListActivity.this, "No script to save!");
                 }
+
+                // save the script
+                scriptStore.setScriptName(scriptName);
+                if (scriptStore != null && ScriptSaver.saveScriptStore(ScriptEditor.this, scriptStore, scriptName)) {
+                    PopUp.makeToast(ScriptEditor.this, "Script saved");
+                } else {
+                    PopUp.makeToast(ScriptEditor.this, "Error saving script!");
+                }
+
+                startActivity(new Intent(ScriptEditor.this, ScriptLoader.class));
+                finish();
             }
         });
     }
@@ -169,7 +194,7 @@ public class DragNDropListActivity extends ListActivity {
                     itemView.setVisibility(View.INVISIBLE);
                     defaultBackgroundColor = itemView.getDrawingCacheBackgroundColor();
                     itemView.setBackgroundColor(backgroundColor);
-                    ImageView iv = (ImageView) itemView.findViewById(R.id.ImageView01);
+                    ImageView iv = itemView.findViewById(R.id.ImageView01);
                     if (iv != null) {
                         iv.setVisibility(View.INVISIBLE);
                     }
@@ -178,7 +203,7 @@ public class DragNDropListActivity extends ListActivity {
                 public void onStopDrag(View itemView) {
                     itemView.setVisibility(View.VISIBLE);
                     itemView.setBackgroundColor(defaultBackgroundColor);
-                    ImageView iv = (ImageView) itemView.findViewById(R.id.ImageView01);
+                    ImageView iv = itemView.findViewById(R.id.ImageView01);
                     if (iv != null) {
                         iv.setVisibility(View.VISIBLE);
                     }

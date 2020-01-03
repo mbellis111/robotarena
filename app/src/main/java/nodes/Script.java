@@ -18,7 +18,7 @@ public class Script {
         tokenLength = -1;
         functionCalled = false;
         loopedNoCall = 0;
-        scriptName = "Unnamed";
+        scriptName = "";
     }
 
     public String getScriptName() {

@@ -13,12 +13,11 @@ import android.widget.Button;
 
 import com.mbellis.DragNDrop.R;
 
-import dragNDrop.DragNDropListActivity;
 import game.Constants;
 
 
 public class Home extends Activity {
-    private Button createButton, loadButton, startButton, quitButton, rLoadButton;
+    private Button loadButton, startButton, quitButton, rLoadButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,24 +34,14 @@ public class Home extends Activity {
         Constants.WIDTH = size.x;
         Constants.HEIGHT = size.y;
 
-        createButton = findViewById(R.id.home_create_button);
         loadButton = findViewById(R.id.home_load_button);
         startButton = findViewById(R.id.home_start_button);
         quitButton = findViewById(R.id.home_quit_button);
         rLoadButton = findViewById(R.id.home_rload_button);
 
-
-        createButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                DragNDropListActivity.content = null;
-                startActivity(new Intent(Home.this, DragNDropListActivity.class));
-                finish();
-            }
-        });
-
         loadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(Home.this, ScriptEditor.class));
+                startActivity(new Intent(Home.this, ScriptLoader.class));
                 finish();
             }
         });

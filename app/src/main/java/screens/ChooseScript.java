@@ -17,14 +17,17 @@ import android.widget.Toast;
 import com.mbellis.DragNDrop.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import fileutils.FileSaver;
 import game.Constants;
 import game.Robot;
-import game.RobotSaver;
-import game.ScriptSaver;
+import fileutils.RobotSaver;
+import fileutils.ScriptSaver;
+import nodes.ScriptStore;
 
 public class ChooseScript extends Activity {
-    public static ArrayList<String> playerScript, enemy1Script, enemy2Script, enemy3Script;
+    public static ScriptStore playerScript, enemy1Script, enemy2Script, enemy3Script;
     public static Robot playerRobot, enemy1Robot, enemy2Robot, enemy3Robot;
     private Spinner playerSpinner, enemy1Spinner, enemy2Spinner, enemy3Spinner,
             playerRSpinner, enemy1RSpinner, enemy2RSpinner, enemy3RSpinner;
@@ -47,15 +50,15 @@ public class ChooseScript extends Activity {
     private class StringListener implements OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             String chosen = parent.getItemAtPosition(pos).toString();
-            ArrayList<String> script = ScriptSaver.readFromFile(ChooseScript.this, chosen);
+            ScriptStore scriptStore = ScriptSaver.getScriptStoreFromFile(ChooseScript.this, chosen);
             if (parent == playerSpinner) {
-                playerScript = script;
+                playerScript = scriptStore;
             } else if (parent == enemy1Spinner) {
-                enemy1Script = script;
+                enemy1Script = scriptStore;
             } else if (parent == enemy2Spinner) {
-                enemy2Script = script;
+                enemy2Script = scriptStore;
             } else if (parent == enemy3Spinner) {
-                enemy3Script = script;
+                enemy3Script = scriptStore;
             }
         }
 
@@ -93,26 +96,26 @@ public class ChooseScript extends Activity {
         resetChosenScripts();
         resetChosenRobots();
 
-        doneButton = (Button) findViewById(R.id.choose_done_button);
-        homeButton = (Button) findViewById(R.id.choose_home_button);
+        doneButton = findViewById(R.id.choose_done_button);
+        homeButton = findViewById(R.id.choose_home_button);
 
-        playerSpinner = (Spinner) findViewById(R.id.choose_player_spinner);
-        enemy1Spinner = (Spinner) findViewById(R.id.choose_enemy1_spinner);
-        enemy2Spinner = (Spinner) findViewById(R.id.choose_enemy2_spinner);
-        enemy3Spinner = (Spinner) findViewById(R.id.choose_enemy3_spinner);
+        playerSpinner = findViewById(R.id.choose_player_spinner);
+        enemy1Spinner = findViewById(R.id.choose_enemy1_spinner);
+        enemy2Spinner = findViewById(R.id.choose_enemy2_spinner);
+        enemy3Spinner = findViewById(R.id.choose_enemy3_spinner);
 
-        playerRSpinner = (Spinner) findViewById(R.id.choose_player_r_spinner);
-        enemy1RSpinner = (Spinner) findViewById(R.id.choose_enemy1_r_spinner);
-        enemy2RSpinner = (Spinner) findViewById(R.id.choose_enemy2_r_spinner);
-        enemy3RSpinner = (Spinner) findViewById(R.id.choose_enemy3_r_spinner);
+        playerRSpinner = findViewById(R.id.choose_player_r_spinner);
+        enemy1RSpinner = findViewById(R.id.choose_enemy1_r_spinner);
+        enemy2RSpinner = findViewById(R.id.choose_enemy2_r_spinner);
+        enemy3RSpinner = findViewById(R.id.choose_enemy3_r_spinner);
 
 
-        ArrayList<String> robots = ScriptSaver.readFromFile(this, Constants.SAVEDROBOTS);
+        List<String> robots = FileSaver.readFromFile(this, Constants.SAVEDROBOTS);
         if (robots == null) {
             robots = new ArrayList<String>();
         }
 
-        ArrayList<String> scripts = ScriptSaver.readFromFile(this, Constants.SAVEDSCRIPTS);
+        List<String> scripts = FileSaver.readFromFile(this, Constants.SAVEDSCRIPTS);
         if (scripts == null) {
             scripts = new ArrayList<String>();
         }
@@ -195,16 +198,16 @@ public class ChooseScript extends Activity {
 
                 //check scripts
                 if (playerScript == null) {
-                    playerScript = ScriptSaver.readFromFile(ChooseScript.this, playerSpinner.getItemAtPosition(0).toString());
+                    playerScript = ScriptSaver.getScriptStoreFromFile(ChooseScript.this, playerSpinner.getItemAtPosition(0).toString());
                 }
                 if (enemy1Script == null) {
-                    enemy1Script = ScriptSaver.readFromFile(ChooseScript.this, enemy1Spinner.getItemAtPosition(0).toString());
+                    enemy1Script = ScriptSaver.getScriptStoreFromFile(ChooseScript.this, enemy1Spinner.getItemAtPosition(0).toString());
                 }
                 if (enemy2Script == null) {
-                    enemy2Script = ScriptSaver.readFromFile(ChooseScript.this, enemy2Spinner.getItemAtPosition(0).toString());
+                    enemy2Script = ScriptSaver.getScriptStoreFromFile(ChooseScript.this, enemy2Spinner.getItemAtPosition(0).toString());
                 }
                 if (enemy3Script == null) {
-                    enemy3Script = ScriptSaver.readFromFile(ChooseScript.this, enemy3Spinner.getItemAtPosition(0).toString());
+                    enemy3Script = ScriptSaver.getScriptStoreFromFile(ChooseScript.this, enemy3Spinner.getItemAtPosition(0).toString());
                 }
 
                 // check robots

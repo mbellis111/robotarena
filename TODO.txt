@@ -1,6 +1,12 @@
 
 THINGS TO DO OR FIX
 
+[]  Add Home button to script editor
+
+[]  Fix the script editor from jumping when entering in a robot name
+
+[]  Fix functionality to populate the robot name if it exists
+
 []  Redo all screens as constraint layouts, fix scaling to fit any phone
 
 []  Add robot and script names, add clarity to editing / loading screens to display current robot / script

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mbellis.DragNDrop.R;
@@ -30,6 +31,7 @@ public class ScriptEditor extends ListActivity {
 
     private static ScriptStore scriptStore = null;
     private Button addButton, removeButton, saveButton;
+    private TextView nameText;
 
     public static void addValueToStore(String text) {
         if (scriptStore != null) {
@@ -53,7 +55,7 @@ public class ScriptEditor extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.scripteditorview);
+        setContentView(R.layout.scripteditor);
         if (scriptStore == null) {
             resetScriptStore();
         }
@@ -70,6 +72,11 @@ public class ScriptEditor extends ListActivity {
         addButton = findViewById(R.id.list_addbutton);
         removeButton = findViewById(R.id.list_removebutton);
         saveButton = findViewById(R.id.list_savebutton);
+        nameText = findViewById(R.id.scriptName);
+
+        if (scriptStore != null) {
+            nameText.setText(scriptStore.getScriptName());
+        }
 
         // set up button listeners
         addButton.setOnClickListener(new View.OnClickListener() {

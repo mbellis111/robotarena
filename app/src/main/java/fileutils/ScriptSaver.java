@@ -45,7 +45,7 @@ public class ScriptSaver {
         FileOutputStream fOut;
         ObjectOutputStream oOut;
 
-        // set the robots name
+        // set the scripts name
         scriptStore.setScriptName(fileName);
 
         try {
@@ -75,7 +75,7 @@ public class ScriptSaver {
 
     public static boolean deleteAllFiles(Context c) {
         boolean passed = true;
-        ArrayList<String> fileNames = FileSaver.readFromFile(c, Constants.SAVEDROBOTS);
+        ArrayList<String> fileNames = FileSaver.readFromFile(c, Constants.SAVEDSCRIPTS);
         if (fileNames == null) {
             return false;
         }
@@ -84,7 +84,7 @@ public class ScriptSaver {
                 passed = false;
             }
         }
-        if (!FileSaver.deleteFile(c, Constants.SAVEDROBOTS)) {
+        if (!FileSaver.deleteFile(c, Constants.SAVEDSCRIPTS)) {
             return false;
         }
         return passed;

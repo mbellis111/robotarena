@@ -76,7 +76,7 @@ public class ScriptLoader extends Activity {
                 String scriptName = getSelectedScriptName();
 
                 if (scriptName.equals(NEW_SCRIPT_TEXT)) {
-                    ScriptEditor.resetScriptStore();
+                    ScriptEditor.setScriptStore(null);
                 } else {
                     ScriptStore scriptStore = ScriptSaver.getScriptStoreFromFile(ScriptLoader.this, scriptName);
                     if (scriptStore == null) {

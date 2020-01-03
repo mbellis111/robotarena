@@ -90,5 +90,6 @@
     <string name="enemy_win">Robot %1$s Wins!</string>
     <string name="points_left">Points Left: %1$d</string>
     <string name="robot_edit_hint">Enter Name</string>
+    <string name="script_edit_hint">Enter Name</string>
     <string name="back_text">Back</string>
 </resources>

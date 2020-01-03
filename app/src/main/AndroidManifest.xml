@@ -1,35 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.mbellis.DragNDrop"
-      android:versionCode="1"
-      android:versionName="1.0">
+    package="com.mbellis.DragNDrop"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <supports-screens
-                  android:smallScreens="true"
-                  android:normalScreens="true"
-                  android:largeScreens="true"
-                  android:xlargeScreens="true"
-                  android:anyDensity="true"/>
-    <application android:icon="@drawable/robot" android:label="@string/app_name" android:allowBackup="true" >
-        <activity android:name="screens.Home"
-                  android:label="@string/app_name">
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/robot"
+        android:label="@string/app_name">
+        <activity
+            android:name="screens.Home"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="dragNDrop.ScriptEditor" android:label="@string/app_name"></activity>
-        <activity android:name="screens.About" android:label="@string/about_name"></activity>
-        <activity android:name="screens.ChooseScript" android:label="@string/choose_scripts_text"></activity>
-        <activity android:name="screens.ScriptLoader" android:label="@string/save_text"></activity>
-        <activity android:name="screens.GameOver" android:label="@string/game_over_text"></activity>
-        <activity android:name="screens.Add" android:label="@string/add_name"></activity>
-        <activity android:name="screens.Help" android:label="@string/help_name"></activity>
-        <activity android:name="screens.AddFunction" android:label="@string/addfunction_name"></activity>
-        <activity android:name="screens.AddBoolean" android:label="@string/addboolean_name"></activity>
-        <activity android:name="screens.AnimatedActivity" android:label="@string/animatedview_name"></activity>
-    	<activity android:name="screens.PopUp" android:label="@string/message_text" android:theme="@android:style/Theme.Dialog"></activity>
-    	<activity android:name="screens.RobotEditor" android:label="@string/robot_cust_text"></activity>
-    	<activity android:name="screens.RobotLoader" android:label="@string/robot_load_screen"></activity>
-    	</application>
+        <activity
+            android:name="dragNDrop.ScriptEditor"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name="screens.About"
+            android:label="@string/about_name"></activity>
+        <activity
+            android:name="screens.ChooseScript"
+            android:label="@string/choose_scripts_text"></activity>
+        <activity
+            android:name="screens.ScriptLoader"
+            android:label="@string/save_text"></activity>
+        <activity
+            android:name="screens.GameOver"
+            android:label="@string/game_over_text"></activity>
+        <activity
+            android:name="screens.Add"
+            android:label="@string/add_name"></activity>
+        <activity
+            android:name="screens.Help"
+            android:label="@string/help_name"></activity>
+        <activity
+            android:name="screens.AddFunction"
+            android:label="@string/addfunction_name"></activity>
+        <activity
+            android:name="screens.AddBoolean"
+            android:label="@string/addboolean_name"></activity>
+        <activity
+            android:name="screens.AnimatedActivity"
+            android:label="@string/animatedview_name"></activity>
+        <activity
+            android:name="screens.PopUp"
+            android:label="@string/message_text"
+            android:theme="@android:style/Theme.Dialog"></activity>
+        <activity
+            android:name="screens.RobotEditor"
+            android:label="@string/robot_cust_text"></activity>
+        <activity
+            android:name="screens.RobotLoader"
+            android:label="@string/robot_load_screen"></activity>
+    </application>
 </manifest> 

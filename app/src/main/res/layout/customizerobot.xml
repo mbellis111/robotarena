@@ -13,6 +13,7 @@
         android:gravity="center"
         android:text="@string/robot_cust_text"
         android:textSize="30sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,11 +21,11 @@
 
     <TextView
         android:id="@+id/editing_robot_name"
+        android:textColor="@color/white"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/robot_name_text"
         android:textSize="18sp"
@@ -33,13 +34,14 @@
 
     <EditText
         android:id="@+id/edit_robot_name_field"
+        android:textColor="@color/white"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/robot_edit_hint"
+        android:textColorHint="@color/white_transparent"
         android:inputType="text"
         android:imeOptions="actionDone"
         app:layout_constraintStart_toEndOf="@+id/editing_robot_name"
@@ -47,6 +49,7 @@
 
     <TextView
         android:id="@+id/cust_points_val"
+        android:textColor="@color/white"
         android:layout_width="200dp"
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
@@ -62,10 +65,10 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center|start"
         android:text="@string/health_text"
@@ -75,10 +78,10 @@
 
     <TextView
         android:id="@+id/textView4"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center|start"
         android:text="@string/shield_text"
@@ -88,10 +91,10 @@
 
     <TextView
         android:id="@+id/textView5"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center|start"
         android:text="@string/damage_text"
@@ -101,10 +104,10 @@
 
     <TextView
         android:id="@+id/textView6"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center|start"
         android:text="@string/missiles_text"
@@ -115,12 +118,12 @@
 
     <Button
         android:id="@+id/cust_m_hp"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/minus_text"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -128,12 +131,12 @@
 
     <Button
         android:id="@+id/cust_m_shield"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/minus_text"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -141,12 +144,12 @@
 
     <Button
         android:id="@+id/cust_m_damage"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/minus_text"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -154,12 +157,12 @@
 
     <Button
         android:id="@+id/cust_m_mines"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/minus_text"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -168,11 +171,11 @@
 
     <Button
         android:id="@+id/cust_p_shield"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/plus_text"
         android:textSize="15sp"
@@ -181,11 +184,11 @@
 
     <Button
         android:id="@+id/cust_p_damage"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/plus_text"
         android:textSize="15sp"
@@ -194,11 +197,11 @@
 
     <Button
         android:id="@+id/cust_p_mines"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/plus_text"
         android:textSize="15sp"
@@ -208,11 +211,11 @@
 
     <TextView
         android:id="@+id/cust_hp_val"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/zero_text"
         android:textSize="20sp"
@@ -221,11 +224,11 @@
 
     <TextView
         android:id="@+id/cust_shield_val"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/zero_text"
         android:textSize="20sp"
@@ -234,11 +237,11 @@
 
     <TextView
         android:id="@+id/cust_damage_val"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/zero_text"
         android:textSize="20sp"
@@ -251,16 +254,17 @@
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/zero_text"
         android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/cust_reset"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -273,11 +277,11 @@
 
     <Button
         android:id="@+id/edit_back"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/back_text"
         android:textSize="20sp"
@@ -286,11 +290,11 @@
 
     <Button
         android:id="@+id/cust_done"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/done_text"
         android:textSize="20sp"
@@ -323,11 +327,11 @@
 
     <Button
         android:id="@+id/cust_p_hp"
-        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/plus_text"
         android:textSize="15sp"

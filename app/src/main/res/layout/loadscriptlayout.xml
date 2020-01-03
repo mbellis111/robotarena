@@ -15,6 +15,7 @@
         android:gravity="center"
         android:text="@string/script_editor_text"
         android:textSize="30sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +23,7 @@
 
     <TextView
         android:id="@+id/textView7"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -36,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +47,12 @@
 
     <Button
         android:id="@+id/s_save_edit_button"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:text="@string/edit_script_text"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toTopOf="@+id/s_save_delete_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,10 +60,12 @@
 
     <Button
         android:id="@+id/s_save_delete_button"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:text="@string/delete_script_text"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toTopOf="@+id/s_save_deleteall_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -66,9 +73,11 @@
 
     <Button
         android:id="@+id/s_save_deleteall_button"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="184dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         android:text="@string/delete_all_scripts_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,10 +89,11 @@
         android:layout_width="167dp"
         android:layout_height="48dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/done_text"
         android:textSize="20sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

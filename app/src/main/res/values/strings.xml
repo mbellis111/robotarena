@@ -41,7 +41,10 @@
     <string name="home_alt_text">Home Screen</string>
     <string name="add_view_text">Pick the type of Node to add</string>
     <string name="add_button_text">Add Node</string>
-    <string name="add_function_text">FUNCTION\nChoose field to use!</string>
+    <string name="add_function_text">Add Action</string>
+    <string name="action_text">Action</string>
+    <string name="target_text">Target</string>
+    <string name="targets_text">Targets</string>
     <string name="text_box_text">Text Box</string>
     <string name="variable_chooser_text">Variable Chooser</string>
     <string name="direction_chooser_text">Direction Chooser</string>
@@ -68,7 +71,7 @@
     <string name="value_text">VALUE</string>
     <string name="operator_text">OPERATOR</string>
     <string name="number_text">NUMBER</string>
-    <string name="enter_number_text">Enter a number:</string>
+    <string name="enter_number_text">Enter a number from 0 to 360</string>
     <string name="addfunction_name">Add Function</string>
     <string name="addboolean_name">Add Boolean Statement</string>
     <string name="animatedview_name">Game Screen</string>

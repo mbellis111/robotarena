@@ -21,22 +21,66 @@ import com.mbellis.DragNDrop.R;
 import dragNDrop.ScriptEditor;
 
 public class AddFunction extends Activity {
-    private Spinner function_spinner, variable_spinner, direction_spinner;
-    private RadioButton text_button, variable_button, direction_button, null_button;
-    private String function_option, variable_option, direction_option, text_option, final_option;
-    private Button done_button;
-    private EditText editText;
+    private Spinner functionSpinner, targetSpinner, detectedSpinner, directionSpinner;
+    private EditText customNumber;
+    private Button doneButton, backButton;
+
 
     private class StringListener implements OnItemSelectedListener {
 
+        /*
+         *  <item>DIRECTION</item>
+         *  <item>VARIABLE</item>
+         *  <item>CUSTOM NUMBER</item>
+         *  NOTHING
+         *
+         *         <item>MOVE</item>
+                    <item>SHOOT</item>
+                    <item>RELOAD</item>
+                    <item>SHIELD</item>
+                    <item>DETECT</item>
+                    <item>MISSILE</item>
+         */
+
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             String chosen = parent.getItemAtPosition(pos).toString();
-            if (parent == function_spinner) {
-                function_option = chosen;
-            } else if (parent == variable_spinner) {
-                variable_option = chosen;
-            } else if (parent == direction_spinner) {
-                direction_option = chosen;
+            if (parent == functionSpinner) {
+
+                // these do not take a variable
+                // these
+
+                // these take a variable
+                if(chosen.equals("SHIELD") || chosen.equals("RELOAD") || chosen.equals("DETECT")) {
+                    // find the position of the NOTHING option later...
+                    targetSpinner.setSelection(0);
+                    targetSpinner.setVisibility(View.INVISIBLE);
+                    directionSpinner.setVisibility(View.INVISIBLE);
+                    detectedSpinner.setVisibility(View.INVISIBLE);
+                    customNumber.setVisibility(View.INVISIBLE);
+                } else if (chosen.equals("SHOOT") || chosen.equals("MISSILE")) {
+                    targetSpinner.setVisibility(View.VISIBLE);
+                    directionSpinner.setVisibility(View.VISIBLE);
+                    detectedSpinner.setVisibility(View.VISIBLE);
+                    customNumber.setVisibility(View.VISIBLE);
+                }
+            } else if (parent == targetSpinner) {
+                if (chosen.equals("DIRECTION")) {
+                   directionSpinner.setVisibility(View.VISIBLE);
+                   detectedSpinner.setVisibility(View.INVISIBLE);
+                   customNumber.setVisibility(View.INVISIBLE);
+                } else if (chosen.equals("VARIABLE")) {
+                    directionSpinner.setVisibility(View.INVISIBLE);
+                    detectedSpinner.setVisibility(View.VISIBLE);
+                    customNumber.setVisibility(View.INVISIBLE);
+                } else if (chosen.equals("CUSTOM NUMBER")) {
+                    directionSpinner.setVisibility(View.INVISIBLE);
+                    detectedSpinner.setVisibility(View.INVISIBLE);
+                    customNumber.setVisibility(View.VISIBLE);
+                } else if (chosen.equals("NOTHING")) {
+                    directionSpinner.setVisibility(View.INVISIBLE);
+                    detectedSpinner.setVisibility(View.INVISIBLE);
+                    customNumber.setVisibility(View.INVISIBLE);
+                }
             }
         }
 
@@ -46,80 +90,65 @@ public class AddFunction extends Activity {
 
     }
 
-    private OnClickListener radio_listener = new OnClickListener() {
-
-        public void onClick(View v) {
-            // Perform action on clicks
-            RadioButton rb = (RadioButton) v;
-            try {
-                if (rb.getId() == null_button.getId()) {
-                    final_option = "NOTHING";
-                }
-                if (rb.getId() == text_button.getId()) {
-                    text_option = editText.getText().toString();
-                    final_option = text_option;
-                }
-                if (rb.getId() == variable_button.getId()) {
-                    final_option = variable_option;
-                }
-                if (rb.getId() == direction_button.getId()) {
-                    final_option = direction_option;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addfunctionview);
 
-        function_spinner = findViewById(R.id.function_spinner);
-        variable_spinner = findViewById(R.id.variable_spinner);
-        direction_spinner = findViewById(R.id.direction_spinner);
-        text_button = findViewById(R.id.text_button);
-        variable_button = findViewById(R.id.variable_button);
-        null_button = findViewById(R.id.null_button);
-        direction_button = findViewById(R.id.direction_button);
-        done_button = findViewById(R.id.done_button);
-        editText = findViewById(R.id.text_box_edit);
+        // choose what function to use
+        functionSpinner = findViewById(R.id.f_function_spinner);
 
-        // set up all the spinners
-        ArrayAdapter<?> function_adapter = ArrayAdapter.createFromResource(this,
+        // choose what target to use
+        targetSpinner = findViewById(R.id.f_target_spinner);
+
+        // chose
+        detectedSpinner = findViewById(R.id.f_variable_spinner);
+        directionSpinner = findViewById(R.id.f_direction_spinner);
+        customNumber = findViewById(R.id.f_custom_text);
+
+        // bottom buttons
+        doneButton = findViewById(R.id.f_done_button);
+        backButton = findViewById(R.id.f_back_button);
+
+
+        // function spinner
+        ArrayAdapter<?> functionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.functions, android.R.layout.simple_spinner_item);
-        function_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        function_spinner.setAdapter(function_adapter);
-        function_spinner.setOnItemSelectedListener(new StringListener());
+        functionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        functionSpinner.setAdapter(functionAdapter);
+        functionSpinner.setOnItemSelectedListener(new StringListener());
 
-        ArrayAdapter<?> direction_adapter = ArrayAdapter.createFromResource(this,
+        // target spinner
+        ArrayAdapter<?> targetAdapator = ArrayAdapter.createFromResource(this,
+                R.array.function_targets, android.R.layout.simple_spinner_item);
+        targetAdapator.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        targetSpinner.setAdapter(targetAdapator);
+        targetSpinner.setOnItemSelectedListener(new StringListener());
+
+        // direction spinner
+        ArrayAdapter<?> directionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.direction_variables, android.R.layout.simple_spinner_item);
-        direction_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        direction_spinner.setAdapter(direction_adapter);
-        direction_spinner.setOnItemSelectedListener(new StringListener());
+        directionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        directionSpinner.setAdapter(directionAdapter);
 
-        ArrayAdapter<?> variable_adapter = ArrayAdapter.createFromResource(this,
+        // detected spinner
+        ArrayAdapter<?> detectedAdaptor = ArrayAdapter.createFromResource(this,
                 R.array.detect_variables, android.R.layout.simple_spinner_item);
-        variable_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        variable_spinner.setAdapter(variable_adapter);
-        variable_spinner.setOnItemSelectedListener(new StringListener());
+        detectedAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        detectedSpinner.setAdapter(detectedAdaptor);
 
-        // set up radio buttons
-        text_button.setOnClickListener(radio_listener);
-        variable_button.setOnClickListener(radio_listener);
-        null_button.setOnClickListener(radio_listener);
-        direction_button.setOnClickListener(radio_listener);
+
 
         // set up button
-        done_button.setOnClickListener(new View.OnClickListener() {
+        doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // do stuff here
-                // so send data over to the other app, namely the ScriptEditor
 
-                /*
-                 * Testing some things here
-                 */
+                String targetOption = targetSpinner.getSelectedItem().toString();
+                if(targetOption.equals("NOTHING")) {
+                    ScriptEditor.addValueToStore("NOTHING");
+                } else if(targetOption.equals("VARIABLE")) {
+                    
+                }
+
                 if (variable_button.isChecked()) {
                     final_option = variable_option;
                 } else if (direction_button.isChecked()) {
@@ -129,10 +158,6 @@ public class AddFunction extends Activity {
                 } else if (null_button.isChecked()) {
                     final_option = "NOTHING";
                 }
-
-                /*
-                 * End Testing
-                 */
 
                 String function;
                 if (final_option == null || final_option.equals("NOTHING")) {

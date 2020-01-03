@@ -17,6 +17,13 @@
         <item>MISSILE</item>
     </string-array>
 
+    <string-array name="function_targets">
+        <item>DIRECTION</item>
+        <item>VARIABLE</item>
+        <item>CUSTOM NUMBER</item>
+        <item>NOTHING</item>
+    </string-array>
+
     <string-array name="detect_variables">
         <item>NEAREST_ENEMY</item>
         <item>LOWEST_HP_ENEMY</item>

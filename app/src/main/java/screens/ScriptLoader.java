@@ -49,7 +49,7 @@ public class ScriptLoader extends Activity {
            scripts = FileSaver.sortAndRemoveDuplicates(scripts);
         }
 
-        ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this,  R.layout.spinner_item);
         save_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         saveSpinner.setAdapter(save_adapter);
         resetSpinnerAdapter(scripts);

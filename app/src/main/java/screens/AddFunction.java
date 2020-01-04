@@ -7,14 +7,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mbellis.DragNDrop.R;
 
@@ -23,71 +22,68 @@ import dragNDrop.ScriptEditor;
 public class AddFunction extends Activity {
     private Spinner functionSpinner, targetSpinner, detectedSpinner, directionSpinner;
     private EditText customNumber;
+    private TextView selectValueText, targetText;
     private Button doneButton, backButton;
 
 
     private class StringListener implements OnItemSelectedListener {
 
-        /*
-         *  <item>DIRECTION</item>
-         *  <item>VARIABLE</item>
-         *  <item>CUSTOM NUMBER</item>
-         *  NOTHING
-         *
-         *         <item>MOVE</item>
-                    <item>SHOOT</item>
-                    <item>RELOAD</item>
-                    <item>SHIELD</item>
-                    <item>DETECT</item>
-                    <item>MISSILE</item>
-         */
-
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            String chosen = parent.getItemAtPosition(pos).toString();
-            if (parent == functionSpinner) {
-
-                // these do not take a variable
-                // these
-
-                // these take a variable
-                if(chosen.equals("SHIELD") || chosen.equals("RELOAD") || chosen.equals("DETECT")) {
-                    // find the position of the NOTHING option later...
-                    targetSpinner.setSelection(0);
-                    targetSpinner.setVisibility(View.INVISIBLE);
-                    directionSpinner.setVisibility(View.INVISIBLE);
-                    detectedSpinner.setVisibility(View.INVISIBLE);
-                    customNumber.setVisibility(View.INVISIBLE);
-                } else if (chosen.equals("SHOOT") || chosen.equals("MISSILE")) {
-                    targetSpinner.setVisibility(View.VISIBLE);
-                    directionSpinner.setVisibility(View.VISIBLE);
-                    detectedSpinner.setVisibility(View.VISIBLE);
-                    customNumber.setVisibility(View.VISIBLE);
-                }
-            } else if (parent == targetSpinner) {
-                if (chosen.equals("DIRECTION")) {
-                   directionSpinner.setVisibility(View.VISIBLE);
-                   detectedSpinner.setVisibility(View.INVISIBLE);
-                   customNumber.setVisibility(View.INVISIBLE);
-                } else if (chosen.equals("VARIABLE")) {
-                    directionSpinner.setVisibility(View.INVISIBLE);
-                    detectedSpinner.setVisibility(View.VISIBLE);
-                    customNumber.setVisibility(View.INVISIBLE);
-                } else if (chosen.equals("CUSTOM NUMBER")) {
-                    directionSpinner.setVisibility(View.INVISIBLE);
-                    detectedSpinner.setVisibility(View.INVISIBLE);
-                    customNumber.setVisibility(View.VISIBLE);
-                } else if (chosen.equals("NOTHING")) {
-                    directionSpinner.setVisibility(View.INVISIBLE);
-                    detectedSpinner.setVisibility(View.INVISIBLE);
-                    customNumber.setVisibility(View.INVISIBLE);
-                }
-            }
+            showHideItems();
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
             // nothing to do here
         }
 
+    }
+
+    private void showHideItems() {
+        // choose to show or hide items based on the combination selected values
+        String chosenFunction = functionSpinner.getSelectedItem().toString();
+
+        if (chosenFunction.equals("SHIELD") || chosenFunction.equals("RELOAD") || chosenFunction.equals("DETECT")) {
+            // hide all elements regardless of the target
+            targetSpinner.setVisibility(View.INVISIBLE);
+            directionSpinner.setVisibility(View.INVISIBLE);
+            detectedSpinner.setVisibility(View.INVISIBLE);
+            customNumber.setVisibility(View.INVISIBLE);
+            selectValueText.setVisibility(View.INVISIBLE);
+            targetText.setVisibility(View.INVISIBLE);
+            targetSpinner.setSelection(getPositionOfNothing());
+        } else {
+            String chosenTarget = targetSpinner.getSelectedItem().toString();
+            targetSpinner.setVisibility(View.VISIBLE);
+            targetText.setVisibility(View.VISIBLE);
+            if (chosenTarget.equals("DIRECTION")) {
+                selectValueText.setVisibility(View.VISIBLE);
+                directionSpinner.setVisibility(View.VISIBLE);
+                detectedSpinner.setVisibility(View.INVISIBLE);
+                customNumber.setVisibility(View.INVISIBLE);
+            } else if (chosenTarget.equals("VARIABLE")) {
+                selectValueText.setVisibility(View.VISIBLE);
+                directionSpinner.setVisibility(View.INVISIBLE);
+                detectedSpinner.setVisibility(View.VISIBLE);
+                customNumber.setVisibility(View.INVISIBLE);
+            } else if (chosenTarget.equals("NUMBER")) {
+                selectValueText.setVisibility(View.VISIBLE);
+                directionSpinner.setVisibility(View.INVISIBLE);
+                detectedSpinner.setVisibility(View.INVISIBLE);
+                customNumber.setVisibility(View.VISIBLE);
+            } else if (chosenTarget.equals("NOTHING")) {
+                selectValueText.setVisibility(View.INVISIBLE);
+                directionSpinner.setVisibility(View.INVISIBLE);
+                detectedSpinner.setVisibility(View.INVISIBLE);
+                customNumber.setVisibility(View.INVISIBLE);
+            }
+        }
+
+    }
+
+    private int getPositionOfNothing() {
+        @SuppressWarnings("unchecked")
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>) targetSpinner.getAdapter();
+        return adapter.getPosition("NOTHING");
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -109,63 +105,54 @@ public class AddFunction extends Activity {
         doneButton = findViewById(R.id.f_done_button);
         backButton = findViewById(R.id.f_back_button);
 
+        // the text to prompt selecting a value
+        selectValueText = findViewById(R.id.f_select_value_text);
+        targetText = findViewById(R.id.f_target_text);
 
         // function spinner
-        ArrayAdapter<?> functionAdapter = ArrayAdapter.createFromResource(this,
-                R.array.functions, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> functionAdapter = ArrayAdapter.createFromResource(this, R.array.functions, R.layout.spinner_item);
         functionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         functionSpinner.setAdapter(functionAdapter);
         functionSpinner.setOnItemSelectedListener(new StringListener());
 
         // target spinner
-        ArrayAdapter<?> targetAdapator = ArrayAdapter.createFromResource(this,
-                R.array.function_targets, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> targetAdapator = ArrayAdapter.createFromResource(this, R.array.function_targets, R.layout.spinner_item);
         targetAdapator.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         targetSpinner.setAdapter(targetAdapator);
         targetSpinner.setOnItemSelectedListener(new StringListener());
 
         // direction spinner
-        ArrayAdapter<?> directionAdapter = ArrayAdapter.createFromResource(this,
-                R.array.direction_variables, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> directionAdapter = ArrayAdapter.createFromResource(this, R.array.direction_variables, R.layout.spinner_item);
         directionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         directionSpinner.setAdapter(directionAdapter);
 
         // detected spinner
-        ArrayAdapter<?> detectedAdaptor = ArrayAdapter.createFromResource(this,
-                R.array.detect_variables, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> detectedAdaptor = ArrayAdapter.createFromResource(this, R.array.detect_variables, R.layout.spinner_item);
         detectedAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         detectedSpinner.setAdapter(detectedAdaptor);
-
 
 
         // set up button
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                String action = functionSpinner.getSelectedItem().toString();
                 String targetOption = targetSpinner.getSelectedItem().toString();
-                if(targetOption.equals("NOTHING")) {
-                    ScriptEditor.addValueToStore("NOTHING");
-                } else if(targetOption.equals("VARIABLE")) {
-                    
+                String textToAdd = action;
+                if (targetOption.equals("VARIABLE")) {
+                    textToAdd += " " + detectedSpinner.getSelectedItem().toString();
+                } else if (targetOption.equals("DIRECTION")) {
+                    textToAdd += " " + directionSpinner.getSelectedItem().toString();
+                } else if (targetOption.equals("NUMBER")) {
+                    textToAdd += " " + customNumber.getText().toString();
                 }
+                ScriptEditor.addValueToStore(textToAdd);
 
-                if (variable_button.isChecked()) {
-                    final_option = variable_option;
-                } else if (direction_button.isChecked()) {
-                    final_option = direction_option;
-                } else if (text_button.isChecked()) {
-                    final_option = editText.getText().toString();
-                } else if (null_button.isChecked()) {
-                    final_option = "NOTHING";
-                }
-
-                String function;
-                if (final_option == null || final_option.equals("NOTHING")) {
-                    function = function_option;
-                } else {
-                    function = function_option + " " + final_option;
-                }
-                ScriptEditor.addValueToStore(function);
+                startActivity(new Intent(AddFunction.this, ScriptEditor.class));
+                finish();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(AddFunction.this, ScriptEditor.class));
                 finish();
             }

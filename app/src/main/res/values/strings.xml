@@ -44,7 +44,7 @@
     <string name="add_function_text">Add Action</string>
     <string name="action_text">Action</string>
     <string name="target_text">Target</string>
-    <string name="targets_text">Targets</string>
+    <string name="targets_text">Select Value</string>
     <string name="text_box_text">Text Box</string>
     <string name="variable_chooser_text">Variable Chooser</string>
     <string name="direction_chooser_text">Direction Chooser</string>

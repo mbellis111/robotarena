@@ -120,13 +120,13 @@ public class ChooseScript extends Activity {
             scripts = new ArrayList<String>();
         }
 
-        ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this,  R.layout.spinner_item);
         for (String s : scripts) {
             save_adapter.add(s);
         }
         save_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter<String> save_r_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> save_r_adapter = new ArrayAdapter<String>(this,  R.layout.spinner_item);
         for (String s : robots) {
             save_r_adapter.add(s);
         }

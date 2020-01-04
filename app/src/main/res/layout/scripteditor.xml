@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/steel_background_2_small">
 
     <Button
         android:id="@+id/list_savebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/done_text"
-        android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/done_text"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
@@ -21,6 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/remove_text"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +34,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/add_text"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
@@ -62,7 +66,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -72,21 +76,24 @@
         android:hint="@string/robot_edit_hint"
         android:text="@string/script_name_text"
         android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline10" />
 
     <EditText
         android:id="@+id/scriptName"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/script_edit_hint"
-        android:inputType="text"
         android:imeOptions="actionDone"
-        android:textSize="20sp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white_transparent"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/guideline10" />
 
@@ -98,7 +105,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <dragNDrop.DragNDropListView
-        android:id="@+id/dragNDropListView"
+        android:id="@android:id/list"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
@@ -112,9 +119,10 @@
         android:id="@+id/list_clear_all_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/clear_all"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:text="@string/clear_all"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
@@ -124,9 +132,10 @@
         android:id="@+id/list_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back_text"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:text="@string/back_text"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/partial_transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />

@@ -20,7 +20,7 @@
     <string-array name="function_targets">
         <item>DIRECTION</item>
         <item>VARIABLE</item>
-        <item>CUSTOM NUMBER</item>
+        <item>NUMBER</item>
         <item>NOTHING</item>
     </string-array>
 

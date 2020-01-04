@@ -143,7 +143,12 @@ public class AddFunction extends Activity {
                 } else if (targetOption.equals("DIRECTION")) {
                     textToAdd += " " + directionSpinner.getSelectedItem().toString();
                 } else if (targetOption.equals("NUMBER")) {
-                    textToAdd += " " + customNumber.getText().toString();
+                    String number = customNumber.getText().toString();
+                    if(number.equals("")) {
+                        PopUp.makeToast(AddFunction.this, "Must enter a number!");
+                        return;
+                    }
+                    textToAdd += " " + number;
                 }
                 ScriptEditor.addValueToStore(textToAdd);
 

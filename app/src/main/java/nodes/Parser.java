@@ -623,8 +623,7 @@ public class Parser {
                 || s.equals("LOWEST_HP_ENEMY") || s.equals("UP") || s.equals("DOWN") || s.equals("LEFT")
                 || s.equals("RIGHT") || s.equals("SHIELDS") || s.equals("HIGHEST_HP_ENEMY")
                 || s.equals("DOWN_RIGHT") || s.equals("DOWN_LEFT") || s.equals("UP_LEFT") || s.equals("UP_RIGHT")
-                || s.equals("ROBOTS_DETECTED") || s.equals("X") || s.equals("Y")
-                || s.equals("ARENA_WIDTH") || s.equals("ARENA_HEIGHT") || s.equals("MISSILES")) {
+                || s.equals("ROBOTS_DETECTED") || s.equals("X") || s.equals("Y") || s.equals("MISSILES")) {
             return new TokenData(Token.VARIABLE, s);
         } else if (s.equals("NOTHING")) {
             return new TokenData(Token.NOTHING, "");

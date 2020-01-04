@@ -166,10 +166,6 @@ public class Arena {
                 return Constants.DOWN_RIGHT;
             case ROBOTS_DETECTED:
                 return r.getRobotsDetected();
-            case ARENA_WIDTH:
-                return Constants.WIDTH - Constants.ROBOT_SIZE - Constants.ROBOT_SPEED / 2;
-            case ARENA_HEIGHT:
-                return Constants.HEIGHT - Constants.ROBOT_SIZE - Constants.ROBOT_SPEED / 2;
             case MISSILES:
                 return r.getMissiles();
             default:

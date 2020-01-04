@@ -9,6 +9,8 @@ X   Add back button to script editor & clear all button
 
 -   Fix the script editor from jumping when entering in a robot name
 
+-   Add a help message to the Add Function and Add Boolean screens to help understand the syntax
+
 X   Fix functionality to populate the robot name if it exists.
     Added a listener to the edit texts to set the name when the done button is pressed
 

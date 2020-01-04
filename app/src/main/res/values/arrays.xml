@@ -41,11 +41,6 @@
         <item>DOWN_RIGHT</item>
     </string-array>
 
-    <string-array name="other_variables">
-        <item>ARENA_WIDTH</item>
-        <item>ARENA_HEIGHT</item>
-    </string-array>
-
     <string-array name="value_variables">
         <item>AMMO</item>
         <item>HEALTH</item>

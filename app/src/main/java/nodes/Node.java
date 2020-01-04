@@ -11,7 +11,7 @@ public abstract class Node {
     public enum Variable {
         HEALTH, AMMO, SHIELDS, X, Y, NEAREST_ENEMY, LOWEST_HP_ENEMY, HIGHEST_HP_ENEMY,
         UP, DOWN, LEFT, RIGHT, UP_RIGHT, UP_LEFT, DOWN_LEFT, DOWN_RIGHT,
-        ROBOTS_DETECTED, ARENA_WIDTH, ARENA_HEIGHT, MISSILES
+        ROBOTS_DETECTED, MISSILES
     }
 
     public enum Functions {

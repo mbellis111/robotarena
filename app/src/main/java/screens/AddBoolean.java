@@ -7,11 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -20,102 +17,67 @@ import com.mbellis.DragNDrop.R;
 import dragNDrop.ScriptEditor;
 
 public class AddBoolean extends Activity {
-    private String dataType, chosen_value, chosen_operator, chosen_var;
-    private Spinner value_spinner, operator_spinner, var_spinner;
-    private Button done_button;
-    private EditText number_text;
-    private CheckBox checkBox;
+    private String dataType;
+    private Spinner valueSpinner, operatorSpinner;
+    private Button doneButton, backButton;
+    private EditText customNumber;
 
-    private class StringListener implements OnItemSelectedListener {
-
-        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            String chosen = parent.getItemAtPosition(pos).toString();
-            // do something here
-            if (parent == value_spinner) {
-                chosen_value = chosen;
-            } else if (parent == operator_spinner) {
-                chosen_operator = chosen;
-            } else if (parent == var_spinner) {
-                chosen_var = chosen;
-            }
-        }
-
-        public void onNothingSelected(AdapterView<?> arg0) {
-            // nothing to do here
-        }
-
-    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addbooleanview);
 
-        chosen_value = "AMMO";
-        chosen_operator = "EQUALS";
-        chosen_var = "ARENA_WIDTH";
         // ok now figure out exactly where we came from
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             dataType = extras.getString("add_data_type");
         }
 
-        value_spinner = findViewById(R.id.booleanvaluespinner);
-        operator_spinner = findViewById(R.id.booleanoperatorspinner);
-        var_spinner = findViewById(R.id.arenaCoordsSpinner);
-        done_button = findViewById(R.id.booleandonebutton);
-        number_text = findViewById(R.id.booleannumberinput);
-        checkBox = findViewById(R.id.useNumberCheck);
+        valueSpinner = findViewById(R.id.b_value_spinner);
+        operatorSpinner = findViewById(R.id.b_operator_spinner);
+        doneButton = findViewById(R.id.b_done_button);
+        backButton = findViewById(R.id.b_back_button);
+        customNumber = findViewById(R.id.b_custom_text);
 
-        checkBox.setChecked(true);
+        ArrayAdapter<?> operatorAdapter = ArrayAdapter.createFromResource(this, R.array.operator_variables, R.layout.spinner_item);
+        operatorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        operatorSpinner.setAdapter(operatorAdapter);
 
-        ArrayAdapter<?> operator_adapter = ArrayAdapter.createFromResource(this,
-                R.array.operator_variables, android.R.layout.simple_spinner_item);
-        operator_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        operator_spinner.setAdapter(operator_adapter);
-        operator_spinner.setOnItemSelectedListener(new StringListener());
-
-        ArrayAdapter<?> value_adapter = ArrayAdapter.createFromResource(this,
-                R.array.value_variables, android.R.layout.simple_spinner_item);
-        value_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        value_spinner.setAdapter(value_adapter);
-        value_spinner.setOnItemSelectedListener(new StringListener());
-
-        ArrayAdapter<?> var_adapter = ArrayAdapter.createFromResource(this,
-                R.array.other_variables, android.R.layout.simple_spinner_item);
-        value_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        var_spinner.setAdapter(var_adapter);
-        var_spinner.setOnItemSelectedListener(new StringListener());
+        ArrayAdapter<?> valueAdapter = ArrayAdapter.createFromResource(this, R.array.value_variables, R.layout.spinner_item);
+        valueAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        valueSpinner.setAdapter(valueAdapter);
 
         // done button
-        done_button.setOnClickListener(new View.OnClickListener() {
+        doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String number = number_text.getText().toString().trim();
+
+                String chosenValue = valueSpinner.getSelectedItem().toString();
+                String chosenOperator = operatorSpinner.getSelectedItem().toString();
+                String number = customNumber.getText().toString();
+
                 if (number.equals("")) {
-                    number = "0";
+                    PopUp.makeToast(AddBoolean.this, "Must enter a number!");
+                    return;
                 }
-                String function;
-                if (checkBox.isChecked()) {
-                    function = "( " + chosen_value + " " + chosen_operator + " " + number + " )";
-                } else {
-                    function = "( " + chosen_value + " " + chosen_operator + " " + chosen_var + " )";
-                }
+
+                String booleanStatement = "( " + chosenValue + " " + chosenOperator + " " + number + " )";
                 if (dataType.equals("WHILE")) {
-                    ScriptEditor.addValueToStore(dataType + " " + function);
+                    ScriptEditor.addValueToStore(dataType + " " + booleanStatement);
                     ScriptEditor.addValueToStore("END_WHILE");
-                    startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
-                    finish();
                 } else if (dataType.equals("IF")) {
-                    ScriptEditor.addValueToStore(dataType + " " + function);
+                    ScriptEditor.addValueToStore(dataType + " " + booleanStatement);
                     ScriptEditor.addValueToStore("END_IF");
                     ScriptEditor.addValueToStore("ELSE");
                     ScriptEditor.addValueToStore("END_ELSE");
-                    startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
-                    finish();
-                } else {
-                    // some sort of error
-                    startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
-                    finish();
                 }
+                startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
+                finish();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(AddBoolean.this, ScriptEditor.class));
+                finish();
             }
         });
 

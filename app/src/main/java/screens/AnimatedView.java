@@ -43,6 +43,8 @@ public class AnimatedView extends ImageView {
         gameOver = -1;
         healthChanged = 0;
         robotHp = new double[4];
+        arena = null;
+        robots = null;
         if (!isInEditMode()) {
             missilePic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.missile);
             bulletPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bullet);
@@ -78,7 +80,7 @@ public class AnimatedView extends ImageView {
     };
 
     protected void onDraw(Canvas c) {
-        if (!isInEditMode() && gameOver == -1) {
+        if (!isInEditMode() && arena != null && gameOver == -1) {
             bullets = arena.getBullets();
             robots = arena.getRobots();
             int i = 0;
@@ -148,7 +150,6 @@ public class AnimatedView extends ImageView {
             arena.advanceScripts();
             arena.moveBullets();
 
-
             // update all hp
             int[] accessed = new int[4];
             accessed[0] = 0;
@@ -173,22 +174,23 @@ public class AnimatedView extends ImageView {
                 }
             }
 
-
-            gameOver = arena.checkWin();
-
+            // check for a draw due to nothing happening for too long
             if (!hasChanged) {
                 healthChanged++;
             } else {
                 healthChanged = 0;
             }
 
-            if (healthChanged == 10 * Constants.FRAME_RATE) {
+            if (healthChanged == Constants.DRAW_TIMER * Constants.FRAME_RATE) {
                 startTime = System.nanoTime();
             }
 
             endTime = System.nanoTime();
-            if (((endTime - startTime) / 1000000000) == 10) {
+            if (startTime != 0 && ((endTime - startTime) / 1000000000) >= Constants.DRAW_TIMER) {
+                // force a draw due to inaction
                 gameOver = 5;
+            } else {
+                gameOver = arena.checkWin();
             }
 
             if (gameOver != -1) {

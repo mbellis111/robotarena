@@ -17,17 +17,10 @@ public class AnimatedActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.animatedview);
-        playerHpText = (TextView) findViewById(R.id.playerhp);
-        robot2HpText = (TextView) findViewById(R.id.robot2hp);
-        robot3HpText = (TextView) findViewById(R.id.robot3hp);
-        robot4HpText = (TextView) findViewById(R.id.robot4hp);
-    }
-
-    public static void setAllHpText(String player, String r2, String r3, String r4) {
-        playerHpText.setText(player);
-        robot2HpText.setText(r2);
-        robot3HpText.setText(r3);
-        robot4HpText.setText(r4);
+        playerHpText = findViewById(R.id.playerhp);
+        robot2HpText = findViewById(R.id.robot2hp);
+        robot3HpText = findViewById(R.id.robot3hp);
+        robot4HpText = findViewById(R.id.robot4hp);
     }
 
     public static void setHpText(String hp, int robot) {

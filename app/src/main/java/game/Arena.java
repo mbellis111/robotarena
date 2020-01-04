@@ -265,6 +265,8 @@ public class Arena {
     public int checkWin() {
         if (robots.size() == 1) {
             return robots.peek().getId();
+        } else if (robots.isEmpty()) {
+            return 5;
         }
         return -1;
     }

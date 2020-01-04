@@ -13,6 +13,7 @@ public class Constants {
     public static final double UP_LEFT = 315, UP_RIGHT = 45, DOWN_LEFT = 225, DOWN_RIGHT = 135;
     public static final int PAUSE = 1000, FPS = 30;
     public static final int FRAME_RATE = PAUSE / FPS;
+    public static final int DRAW_TIMER = 10;
     public static final String SAVEDSCRIPTS = "userSavedScripts";
     public static final String SAVEDROBOTS = "userSavedRobots";
     public static final int ROBOT_START_HP = 100;

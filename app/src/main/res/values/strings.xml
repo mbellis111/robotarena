@@ -6,7 +6,7 @@
     <string name="add_name">Add a Node</string>
     <string name="add_text">Add</string>
     <string name="remove_text">Remove last</string>
-    <string name="choose_scripts_text">Choose Scripts to Use</string>
+    <string name="choose_scripts_text">Set Up Combatants</string>
     <string name="player_script_text">Choose Player Script and Robot</string>
     <string name="enemy_script_text">Choose Enemy Scripts and Robot</string>
     <string name="help_name">Help Screen</string>

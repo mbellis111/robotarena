@@ -8,33 +8,30 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mbellis.DragNDrop.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import game.Arena;
 import game.StatTracker;
 
 public class GameOver extends Activity {
     private Button homeButton;
-    private EditText winnerText;
-    private TextView statText;
-    private String winner = "";
-    private ArrayList<StatTracker> stats;
+    private TextView statText, winnerText;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gameoverview);
 
-        homeButton = (Button) findViewById(R.id.gameover_home_button);
-        winnerText = (EditText) findViewById(R.id.gameover_end_text);
-        statText = (TextView) findViewById(R.id.stat_text);
+        homeButton = findViewById(R.id.g_done_button);
+        winnerText = findViewById(R.id.gameover_winner);
+        statText = findViewById(R.id.stat_text);
 
 
         Bundle extras = getIntent().getExtras();
+        String winner = null;
         if (extras != null) {
             winner = extras.getString("winner_data");
         }
@@ -48,8 +45,8 @@ public class GameOver extends Activity {
             }
         }
 
-        // set up stat tracking
-        stats = Arena.getStats();
+        // populate stat field
+        List<StatTracker> stats = Arena.getStats();
         StringBuilder txt = new StringBuilder();
         for (StatTracker st : stats) {
             txt.append(st.toString());

@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/red"
+            android:textSize="18sp"
             android:text="@string/null_text" />
 
         <TextView
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/yellow"
+            android:textSize="18sp"
             android:text="@string/null_text" />
 
         <TextView
@@ -37,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/purple"
+            android:textSize="18sp"
             android:text="@string/null_text" />
 
         <TextView
@@ -45,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/grey"
+            android:textSize="18sp"
             android:text="@string/null_text" />
         
     </LinearLayout>

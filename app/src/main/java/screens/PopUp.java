@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 import dragNDrop.ScriptEditor;
 

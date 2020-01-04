@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 public class Help extends Activity {
     public void onCreate(Bundle savedInstanceState) {

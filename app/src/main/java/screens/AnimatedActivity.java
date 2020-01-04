@@ -9,7 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 public class AnimatedActivity extends Activity {
     private static TextView playerHpText, robot2HpText, robot3HpText, robot4HpText;

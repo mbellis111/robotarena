@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 import dragNDrop.ScriptEditor;
 

@@ -12,7 +12,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 import fileutils.RobotSaver;
 import game.Constants;

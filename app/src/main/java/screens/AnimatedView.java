@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 

@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.mbellis.DragNDrop.R;
+import com.mbellis.RobotArena.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -16,6 +16,7 @@
         android:label="@string/app_name">
         <activity
             android:name="screens.Home"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,43 +25,56 @@
         </activity>
         <activity
             android:name="dragNDrop.ScriptEditor"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"></activity>
         <activity
             android:name="screens.About"
+            android:screenOrientation="portrait"
             android:label="@string/about_name"></activity>
         <activity
             android:name="screens.ChooseScript"
+            android:screenOrientation="portrait"
             android:label="@string/choose_scripts_text"></activity>
         <activity
             android:name="screens.ScriptLoader"
+            android:screenOrientation="portrait"
             android:label="@string/save_text"></activity>
         <activity
             android:name="screens.GameOver"
+            android:screenOrientation="portrait"
             android:label="@string/game_over_text"></activity>
         <activity
             android:name="screens.Add"
+            android:screenOrientation="portrait"
             android:label="@string/add_name"></activity>
         <activity
             android:name="screens.Help"
+            android:screenOrientation="portrait"
             android:label="@string/help_name"></activity>
         <activity
             android:name="screens.AddFunction"
+            android:screenOrientation="portrait"
             android:label="@string/addfunction_name"></activity>
         <activity
             android:name="screens.AddBoolean"
+            android:screenOrientation="portrait"
             android:label="@string/addboolean_name"></activity>
         <activity
             android:name="screens.AnimatedActivity"
+            android:screenOrientation="portrait"
             android:label="@string/animatedview_name"></activity>
         <activity
             android:name="screens.PopUp"
+            android:screenOrientation="portrait"
             android:label="@string/message_text"
             android:theme="@android:style/Theme.Dialog"></activity>
         <activity
             android:name="screens.RobotEditor"
+            android:screenOrientation="portrait"
             android:label="@string/robot_cust_text"></activity>
         <activity
             android:name="screens.RobotLoader"
+            android:screenOrientation="portrait"
             android:label="@string/robot_load_screen"></activity>
     </application>
 </manifest> 

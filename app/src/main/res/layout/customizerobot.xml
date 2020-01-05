@@ -6,20 +6,6 @@
     android:background="@drawable/steel_background_2_small">
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/robot_cust_text"
-        android:textSize="30sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/editing_robot_name"
         android:textColor="@color/white"
         android:layout_width="150dp"

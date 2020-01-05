@@ -48,7 +48,7 @@ public class RobotLoader extends Activity {
             robots = FileSaver.sortAndRemoveDuplicates(robots);
         }
 
-        ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this,  R.layout.spinner_item);
+        ArrayAdapter<String> save_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_large);
         save_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         saveSpinner.setAdapter(save_adapter);
         resetSpinnerAdapter(robots);
@@ -95,7 +95,7 @@ public class RobotLoader extends Activity {
                 String robotName = getSelectedRobotName();
 
                 List<String> robots = FileSaver.readFromFile(RobotLoader.this, Constants.SAVEDROBOTS);
-                if (robotName == null || robots == null || !robots.contains(robotName)) {
+                if (robots == null || !robots.contains(robotName)) {
                     PopUp.makeToast(RobotLoader.this, "Robot not found!");
                     return;
                 }

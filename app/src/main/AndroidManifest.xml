@@ -38,7 +38,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="screens.ScriptLoader"
-            android:label="@string/save_text"
+            android:label="@string/script_editor_text"
             android:screenOrientation="portrait" />
         <activity
             android:name="screens.GameOver"
@@ -75,7 +75,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="screens.RobotLoader"
-            android:label="@string/robot_load_screen"
+            android:label="@string/robot_editor_text"
             android:screenOrientation="portrait" />
     </application>
 </manifest> 

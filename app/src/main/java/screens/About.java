@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.mbellis.RobotArena.R;
 
@@ -13,6 +15,15 @@ public class About extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aboutview);
+
+
+        Button homeButton = findViewById(R.id.about_done_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(About.this, Home.class));
+                finish();
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -3,7 +3,7 @@
     <string name="hello">Hello World, RobotArena!</string>
     <string name="app_name">RobotArena</string>
     <string name="about_name">About This App</string>
-    <string name="add_name">Add a Node</string>
+    <string name="add_name">Add To Script</string>
     <string name="add_text">Add</string>
     <string name="remove_text">Remove last</string>
     <string name="choose_scripts_text">Set Up Combatants</string>
@@ -35,7 +35,6 @@
     <string name="script_name_text">Script Name</string>
     <string name="robot_name_text">Robot Name</string>
     <string name="robot_editor_text">Robot Editor</string>
-    <string name="robot_load_screen">Edit Robot</string>
     <string name="home_screen_text">Home</string>
     <string name="quit_text">Quit</string>
     <string name="home_alt_text">Home Screen</string>
@@ -61,7 +60,6 @@
     <string name="save_robot_text">Save Robot</string>
     <string name="robot_load_text">Robot Editor</string>
     <string name="robot_new_text">Create Robot</string>
-    <string name="save_text">Save</string>
     <string name="ok_text">OK</string>
     <string name="syntax_text">Syntax Error</string>
     <string name="add_function">ACTION</string>
@@ -78,17 +76,8 @@
     <string name="animatedview_name">Game Screen</string>
     <string name="usenumber_text">Use Number?</string>
     <string name="health_bar_text">Health Bar Text</string>
-    <string name="help_view_text">Create a script by adding lines. You can add
-        a FUNCTION, which is an action consisting of: shielding, shooting, moving, detecting and reloading
-        an IF_THEN_ELSE, which checks to see if a condition is true, if so continues, otherwise goes to else
-        which can contain more lines. ()You can nest IF_THEN_ELSE statements
-        but be careful to make the END_IF and END_ELSE line up properly!)
-        a WHILE, which performs code until the conditon is no longer met and cannot be nested
-        or NOTHING which does nothing. A good use of this is in the ELSE part of
-        and IF_THEN_ELSE if you don\'nt need to do anything else
-        You can remove a line if you do not like it, and press
-        the back button to undo a delete</string>
-    <string name="about_description">Created by: Matt Bellis for Independent Study Fall 2012</string>
+    <string name="help_view_text">Abandon hope all ye who enter here</string>
+    <string name="about_description">Created by: Matt Bellis for Independent Study Fall 2012, Revamped in 2020</string>
     <string name="win_text">You Win!</string>
     <string name="draw_text">Draw!</string>
     <string name="enemy_win">Robot %1$s Wins!</string>

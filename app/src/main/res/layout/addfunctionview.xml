@@ -72,23 +72,27 @@
 
     <Spinner
         android:id="@+id/f_function_spinner"
-        android:layout_width="169dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/white"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline15"
         app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
     <Spinner
         android:id="@+id/f_target_spinner"
-        android:layout_width="169dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/white"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline15"
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
@@ -133,7 +137,7 @@
 
     <Spinner
         android:id="@+id/f_direction_spinner"
-        android:layout_width="293dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
@@ -147,7 +151,7 @@
 
     <Spinner
         android:id="@+id/f_variable_spinner"
-        android:layout_width="293dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/white"
@@ -160,7 +164,7 @@
 
     <EditText
         android:id="@+id/f_custom_text"
-        android:layout_width="293dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:ems="10"
         android:inputType="text"

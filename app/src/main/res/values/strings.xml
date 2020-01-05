@@ -68,7 +68,7 @@
     <string name="add_statement">BOOLEAN STATEMENT</string>
     <string name="value_text">VALUE</string>
     <string name="operator_text">OPERATOR</string>
-    <string name="number_text">SELECT NUMBER</string>
+    <string name="number_text">NUMBER</string>
     <string name="number_hint_text">Enter a positive number</string>
     <string name="enter_number_text">Enter a number from 0 to 360</string>
     <string name="addfunction_name">Add Function</string>

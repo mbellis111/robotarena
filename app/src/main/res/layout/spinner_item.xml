@@ -4,7 +4,7 @@
     style="?android:attr/spinnerDropDownItemStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textAlignment="center"
     android:textColor="@color/white"
-    android:textAlignment="gravity"
-    android:textSize="18sp"
-    android:gravity="center" />
+    android:textSize="18sp" />

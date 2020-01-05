@@ -14,7 +14,7 @@ X   Add back button to script editor & clear all button
 X   Fix functionality to populate the robot name if it exists.
     Added a listener to the edit texts to set the name when the done button is pressed
 
--   Redo all screens as constraint layouts, fix scaling to fit any phone
+X   Redo all screens as constraint layouts, fix scaling to fit any phone
 
 X   Add robot and script names, add clarity to editing / loading screens to display current robot / script
 

@@ -1,6 +1,8 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import nodes.BoolNode;
@@ -269,6 +271,27 @@ public class Arena {
             return 5;
         }
         return -1;
+    }
+
+    public int checkTimeoutWinner() {
+        if (robots.size() == 0) {
+            return 5;
+        } else if (robots.size() == 1) {
+            return robots.peek().getId();
+        }
+        // choose the robots with the highest health
+        List<Robot> finals = new ArrayList<Robot>(robots);
+        finals.sort(new Comparator<Robot>() {
+            @Override
+            public int compare(Robot r1, Robot r2) {
+                return (int) r2.getHealth() - (int) r1.getHealth();
+            }
+        });
+        // if the top two robots have the same HP, call a tie
+        if (finals.get(0).equals(finals.get(1))) {
+            return 5;
+        }
+        return finals.get(0).getId();
     }
 
     private boolean checkHit(Robot r, Bullet b) {

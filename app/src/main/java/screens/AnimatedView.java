@@ -188,7 +188,7 @@ public class AnimatedView extends ImageView {
             endTime = System.nanoTime();
             if (startTime != 0 && ((endTime - startTime) / 1000000000) >= Constants.DRAW_TIMER) {
                 // force a draw due to inaction
-                gameOver = 5;
+                gameOver = arena.checkTimeoutWinner();
             } else {
                 gameOver = arena.checkWin();
             }

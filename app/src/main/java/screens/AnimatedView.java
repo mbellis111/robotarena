@@ -4,6 +4,8 @@ package screens;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -81,6 +83,14 @@ public class AnimatedView extends AppCompatImageView {
 
     protected void onDraw(Canvas c) {
         if (!isInEditMode() && arena != null && gameOver == -1) {
+
+            // draw the arena border for clarity
+            Paint borderPaint = new Paint();
+            borderPaint.setColor(Color.rgb(0, 0, 0));
+            borderPaint.setStrokeWidth(15);
+            borderPaint.setStyle(Paint.Style.STROKE);
+            c.drawRect(0, 0, (float) Constants.WIDTH, (float) Constants.HEIGHT, borderPaint);
+
             bullets = arena.getBullets();
             robots = arena.getRobots();
             int i = 0;
@@ -158,16 +168,16 @@ public class AnimatedView extends AppCompatImageView {
             accessed[3] = 0;
             for (Robot r : robots) {
                 if (r.getId() == 1) {
-                    AnimatedActivity.setHpText("Player: " + r.getHealth(), r.getId());
+                    AnimatedActivity.setHpText("P: " + (int) r.getHealth(), r.getId());
                 } else {
-                    AnimatedActivity.setHpText("R[" + r.getId() + "]: " + r.getHealth(), r.getId());
+                    AnimatedActivity.setHpText("R[" + r.getId() + "]: " + (int) r.getHealth(), r.getId());
                 }
                 accessed[r.getId() - 1] = 1;
             }
             for (int j = 0; j < accessed.length; j++) {
                 if (accessed[j] == 0) {
                     if (j == 0) {
-                        AnimatedActivity.setHpText("Player: Dead", 1);
+                        AnimatedActivity.setHpText("P: Dead", 1);
                     } else {
                         AnimatedActivity.setHpText("R[" + (j + 1) + "]: Dead", j + 1);
                     }

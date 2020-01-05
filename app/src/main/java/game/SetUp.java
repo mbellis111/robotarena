@@ -1,6 +1,8 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import nodes.Node;
@@ -114,33 +116,21 @@ public class SetUp {
         // do "random" starting position based on script size or #tokens ect
         // find out each length
         ArrayList<Script> scriptList = new ArrayList<Script>();
-
         for (Robot r : robots) {
             scriptList.add(r.getScript());
         }
 
-
-        Script[] scripts = new Script[scriptList.size()];
-        scriptList.toArray(scripts);
-
-        // use crappy bubble sort to sort
-        Script tmp;
-        for (int i = 0; i < scripts.length; i++) {
-            for (int j = i; j < scripts.length; j++) {
-                if (scripts[i].getTokensInScript() < scripts[j].getTokensInScript()) {
-                    tmp = scripts[j];
-                    scripts[j] = scripts[i];
-                    scripts[i] = tmp;
-                }
+        Collections.sort(scriptList, new Comparator<Script>() {
+            @Override
+            public int compare(Script s1, Script s2) {
+                return s1.getTokensInScript() - s2.getTokensInScript();
             }
-        }
+        });
 
-        //debug here ensure shitty bubble sort worked
-
-        Robot r;
         // now assign based on pos in scripts
-        for (int i = 0; i < scripts.length; i++) {
-            r = scripts[i].getOwner();
+        Robot r;
+        for (int i = 0; i < scriptList.size(); i++) {
+            r = scriptList.get(i).getOwner();
             switch (i) {
                 case 0:
                     r.setX(leftX);

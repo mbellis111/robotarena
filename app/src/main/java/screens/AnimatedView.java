@@ -7,7 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
 
 import com.mbellis.RobotArena.R;
 
@@ -20,9 +22,8 @@ import game.Missile;
 import game.Robot;
 import game.SetUp;
 
-public class AnimatedView extends ImageView {
+public class AnimatedView extends AppCompatImageView {
 
-    private Context mContext;
     private Handler h;
     private Arena arena;
     private BitmapDrawable robotPic, robotPic2, robotPic3, bulletPic, shieldPic, radarPic,
@@ -37,7 +38,6 @@ public class AnimatedView extends ImageView {
 
     public AnimatedView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
         h = new Handler();
         endIntent = new Intent(super.getContext(), GameOver.class);
         gameOver = -1;
@@ -46,18 +46,18 @@ public class AnimatedView extends ImageView {
         arena = null;
         robots = null;
         if (!isInEditMode()) {
-            missilePic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.missile);
-            bulletPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bullet);
-            bullet2Pic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bullet_2);
-            bullet3Pic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bullet_3);
-            bullet4Pic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bullet);
-            robotPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.robot);
-            robotPic2 = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.enemy_robot_2);
-            robotPic3 = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.enemy_robot_3);
-            shieldPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.shield);
-            radarPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.radar);
-            playerRobotPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.robot_player);
-            playerBulletPic = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bullet_player);
+            missilePic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.missile);
+            bulletPic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.bullet);
+            bullet2Pic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.bullet_2);
+            bullet3Pic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.bullet_3);
+            bullet4Pic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.bullet);
+            robotPic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.robot);
+            robotPic2 = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.enemy_robot_2);
+            robotPic3 = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.enemy_robot_3);
+            shieldPic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.shield);
+            radarPic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.radar);
+            playerRobotPic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.robot_player);
+            playerBulletPic = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.bullet_player);
             SetUp setUp = new SetUp();
             setUp.create();
             robots = setUp.getRobots();
@@ -196,7 +196,6 @@ public class AnimatedView extends ImageView {
             if (gameOver != -1) {
                 endIntent.putExtra("winner_data", gameOver + "");
                 super.getContext().startActivity(endIntent);
-                mContext = null;
                 AnimatedActivity.removeMyView(super.getContext());
             }
         }

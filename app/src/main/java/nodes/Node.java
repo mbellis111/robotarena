@@ -15,7 +15,7 @@ public abstract class Node {
     }
 
     public enum Functions {
-        SHOOT, MOVE, RELOAD, SHIELD, DETECT, MISSILE
+        SHOOT, MOVE, RELOAD, SHIELD, DETECT, MISSILE, NOTHING
     }
 
     public enum Operators {

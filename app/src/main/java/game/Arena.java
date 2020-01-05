@@ -66,7 +66,7 @@ public class Arena {
 
         if (s.getLoopedNoCall() >= Constants.MAX_LOOP_ITER) {
             // went through the script too many times and nothing happened, robot done!
-            executeFunction(null, s.getOwner(), -1); // resets values, does nothing
+            executeFunction(Functions.NOTHING, s.getOwner(), -1); // resets values, does nothing
             return;
         }
 
@@ -110,7 +110,7 @@ public class Arena {
 
     private boolean checkBoolStatement(Variable v, Operators op, double number, Variable ov, boolean hasNumber, Robot r) {
         double var = variableToNumber(v, r);
-        double checkNumber = -1;
+        double checkNumber;
         if (hasNumber) {
             checkNumber = number;
         } else {
@@ -221,8 +221,8 @@ public class Arena {
             // move them
             double x = b.getX(), y = b.getY();
             // move missiles faster?
-            b.setX(x + (double) (Constants.BULLET_SPEED * Math.sin(Math.toRadians(b.getDirection()))));
-            b.setY(y - (double) (Constants.BULLET_SPEED * Math.cos(Math.toRadians(b.getDirection()))));
+            b.setX(x + (Constants.BULLET_SPEED * Math.sin(Math.toRadians(b.getDirection()))));
+            b.setY(y - (Constants.BULLET_SPEED * Math.cos(Math.toRadians(b.getDirection()))));
             x = b.getX();
             y = b.getY();
             // check for delete
@@ -355,8 +355,8 @@ public class Arena {
     private void move(Robot r, double variable) {
         double x = r.getX(), y = r.getY();
         double sx = r.getX(), sy = r.getY(); // stat tracking
-        r.setX(x + (double) (r.getSpeed() * Math.sin(Math.toRadians(variable))));
-        r.setY(y - (double) (r.getSpeed() * Math.cos(Math.toRadians(variable))));
+        r.setX(x + (r.getSpeed() * Math.sin(Math.toRadians(variable))));
+        r.setY(y - (r.getSpeed() * Math.cos(Math.toRadians(variable))));
         x = r.getX();
         y = r.getY();
         // stat tracking
